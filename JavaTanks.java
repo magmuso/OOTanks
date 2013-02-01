@@ -36,6 +36,12 @@ public class JavaTanks {
 	}
     }
     public void mainInit(){
+    	setTitle("OOTanks");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setResizable(false);
 	/*
 	  inputInit();
 	  gameInit();
