@@ -17,3 +17,7 @@ If running any other time:
 Gets the newest version of repository testing branch
 
     $ git fetch origin testing
+
+Pushes the online repository branch testing from local rep
+
+    $ git push origin testing
