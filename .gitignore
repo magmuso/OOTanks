@@ -1,0 +1,7 @@
+#ignored folders
+debug/
+
+#ignored file types
+*.class
+*.java~
+*.md~

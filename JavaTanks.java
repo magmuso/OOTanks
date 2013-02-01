@@ -1,6 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
-public class JavaTanks {
+public class JavaTanks extends JFrame {
     public JavaTanks(){
 	mainInit();
 	mainLoop();
