@@ -5,7 +5,7 @@ If running first time
 ---------
 
     $ git config --global user.name "your_username"
-    $ git config --global user.esmail "your_email"
+    $ git config --global user.email "your_email"
 
 Gets files and initializes git repository in your local mashine. May ask for password and username of github.
 
