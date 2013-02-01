@@ -11,13 +11,18 @@ Gets files and initializes git repository in your local mashine. May ask for pas
 
     $ git clone https://github.com/magniffico/JavaTanks.git
 
+Strongly recommended to set the master branch to:
+
+    $ git branch --set-upstream master origin/testing
+
 If running any other time:
 ---------
     
 Gets the newest version of repository testing branch
 
-    $ git fetch origin testing
+    $ git pull
 
 Pushes the online repository branch testing from local rep
 
     $ git push origin testing
+
