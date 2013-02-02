@@ -7,7 +7,7 @@ UoE group project.
 Links to tutorials: 
 ---------
 
-The following tutorial is very useful, because I plan on doing the game infrastructure similar:
+The following tutorial is very useful, because we should plan on doing the game infrastructure similar (the good-way):
 
 - http://www.cokeandcode.com/info/tut2d.html
 
