@@ -6,7 +6,7 @@ public class Game{
     public void init(){
 
     }
-    public void update(){
+    public void update(double delta){
 
     }
     public void release(){

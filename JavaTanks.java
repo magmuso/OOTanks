@@ -1,10 +1,31 @@
 import java.awt.*;
 import javax.swing.*;
 public class JavaTanks extends JFrame {
+    
+    private Input inp;
+    private Game core;
+    private Renderer render;
+    
     public JavaTanks(){
 	mainInit();
 	mainLoop();
 	mainRelease();
+    }
+    public void mainInit(){
+    	setTitle("OOTanks");
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setResizable(false);
+	
+	inp = new Input();
+	core  = new Game();
+	render = new Renderer();
+	
+	inp.init();
+	core.init();
+	render.init();
+
     }
     public void mainLoop(){
 	// constants for game loop timer
@@ -21,11 +42,11 @@ public class JavaTanks extends JFrame {
 	    frameTime = System.nanoTime();
 	    double delta = updateLength / (double)TARGET_TIME;
 	    
-	    /*
-	    inputUpdate();
-	    gameUpdate(delta);
-	    renderUpdate();
-	    */
+	    inp.update();
+
+	    core.update(delta);
+
+	    render.update();
 
 	    //sleep for some miliseconds to limit the framerate
 	    try{Thread.sleep((frameTime-System.nanoTime()+TARGET_TIME) / 1000000 );} catch (Exception e){}
@@ -35,25 +56,12 @@ public class JavaTanks extends JFrame {
 	    //
 	}
     }
-    public void mainInit(){
-    	setTitle("OOTanks");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800, 600);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setResizable(false);
-	/*
-	  inputInit();
-	  gameInit();
-	  renderInit();
-	 */
-    }
     public void mainRelease(){
-	/*
-	  inputRelease();
-	  gameRelease();
-	  renderRelease();
-	 */
+	dispose();
+
+	inp.release();
+	core.release();
+	render.update();
     }
     public static void main(String[] args){
 	new JavaTanks();
