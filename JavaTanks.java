@@ -1,31 +1,58 @@
 import java.awt.*;
 import javax.swing.*;
-public class JavaTanks extends JFrame {
+import java.awt.event.*;
+
+public class JavaTanks extends Canvas {
     
+    private JFrame frame;
+
     private Input inp;
-    private Game core;
+    private Game strat;
     private Renderer render;
     
     public JavaTanks(){
-	mainInit();
-	mainLoop();
-	mainRelease();
+	//creating frame
+	frame = new JFrame("JavaTanks");
+	
+	//get content of the frame, determine size
+	JPanel panel = (JPanel) frame.getContentPane();
+	panel.setPreferredSize(new Dimension(800,600));
+	panel.setLayout(null);
+
+	//set up canvas and boundaries, add panel to 'this' canvas
+	setBounds(0,0,800,600);
+	panel.add(this);
+	
+	//we will paint manually, so
+	setIgnoreRepaint(true);
+	
+	//init main parts of the game
+	inp = new Input();
+	strat  = new Game();
+	render = new Renderer();
     }
     public void mainInit(){
-    	setTitle("OOTanks");
-        setSize(800, 600);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setResizable(false);
+	frame.pack();
+	frame.setResizable(false);
+	frame.setVisible(true);
 	
-	inp = new Input();
-	core  = new Game();
-	render = new Renderer();
-	
-	inp.init();
-	core.init();
-	render.init();
+	//exiting the game by pressing "X" on the frame
+	frame.addWindowListener(new WindowAdapter(){
+	    public void windowClosing(WindowEvent e){
+		System.exit(0);
+	    }
+	 });
 
+	//Lewis look here, we are adding input handler to our canvas
+	//add key to class which handles input
+	//addKeyListener();
+
+	//then we tell our canvas to focus and be always prepared for input
+	//requestFocus();
+
+	inp.init();
+	strat.init();
+	render.init();
     }
     public void mainLoop(){
 	// constants for game loop timer
@@ -44,7 +71,7 @@ public class JavaTanks extends JFrame {
 	    
 	    inp.update();
 
-	    core.update(delta);
+	    strat.update(delta);
 
 	    render.update();
 
@@ -57,13 +84,15 @@ public class JavaTanks extends JFrame {
 	}
     }
     public void mainRelease(){
-	dispose();
-
 	inp.release();
-	core.release();
-	render.update();
+	strat.release();
+	render.release();
+	System.exit(0);
     }
     public static void main(String[] args){
-	new JavaTanks();
+	JavaTanks jt = new JavaTanks();
+	jt.mainInit();
+	jt.mainLoop();
+	jt.mainRelease();
     }
 };
