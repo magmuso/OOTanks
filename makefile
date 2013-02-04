@@ -43,7 +43,8 @@ CLASSES = \
 	JavaTanks.java \
 	Input.java \
 	Game.java \
-	Renderer.java 
+	Renderer.java \
+	Entity.java
 
 
 #
