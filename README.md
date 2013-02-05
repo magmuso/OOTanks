@@ -18,3 +18,16 @@ Others:
 - http://www.lwjgl.org/
 - http://code.google.com/p/j2dgf/
 - http://thenewboston.org/list.php?cat=30
+
+How to run the project
+---------
+
+Windows:
+- Compile all the files (if you are not using an IDE, then may have compile each file manualy. Example:
+  javac JavaTanks.java)
+- Run the JavaTanks class with command:
+  java JavaTanks
+
+Linux:
+  $ make
+  $ java JavaTanks
