@@ -39,13 +39,7 @@ JC = javac
 # CLASSES is a macro consisting of 4 words (one for each java source file)
 #
 
-CLASSES = \
-	JavaTanks.java \
-	Input.java \
-	Game.java \
-	Renderer.java \
-	Entity.java \
-	Land.java
+CLASSES = *.java
 
 
 #
