@@ -1,25 +1,24 @@
 import java.awt.event.KeyListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class Input{
+public class Input implements KeyListener{
     //constructor
-    public Input(Renderer render){
-	//render.addKeyListener(this);
+    
+    public Input(){
+	
     }
-    public void init(){
+    //public void startUpdate(){}
+    //public void finishUpdate(){}
 
+    //key class, do not rename/remove
+    public void keyPressed(KeyEvent e) {
+
+    } 
+    //key class, do not rename/remove
+    public void keyReleased(KeyEvent e) {			
     }
-    public void update(){
-
-    }
-    public void release(){
-
-    }
-    public void initKeyListener(Renderer render, KeyListener keyInputHandler){
-	//Lewis look here, we are adding input handler to our canvas
-	//add key to class which handles input
-	render.addKeyListener(keyInputHandler);
-
-	//then we tell our canvas to focus and be always prepared for input
-	render.requestFocus();
+    //key class, do not rename/remove
+    public void keyTyped(KeyEvent e) {
     }
 };

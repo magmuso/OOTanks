@@ -4,14 +4,15 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.image.BufferStrategy;
+import java.awt.event.KeyListener;
 
 public class Renderer extends Canvas{
     private JFrame frame;
     private BufferStrategy buffer;
     private Graphics graphic;
     //constructor
-    public Renderer(){
-	frame = new JFrame("JavaTanks");
+    public Renderer(Input inp){
+	frame = new JFrame("OOTanks");
 	//get content of the frame, determine size
 	JPanel panel = (JPanel) frame.getContentPane();
 	panel.setPreferredSize(new Dimension(800,600));
@@ -34,6 +35,9 @@ public class Renderer extends Canvas{
 	//creating buffering strategy
 	createBufferStrategy(2);
 	buffer = getBufferStrategy();
+	
+	//handle input init. Sadly, we need to you this out of our canvas
+	setKeyListener(inp);
     }
     public void init(){
 	//load resources here
@@ -63,5 +67,10 @@ public class Renderer extends Canvas{
     }
     public void release(){
 
+    }
+    //input handler
+    public void setKeyListener(Input inp) {
+	addKeyListener(inp);
+       	requestFocus();
     }
 };

@@ -8,12 +8,11 @@ public class JavaTanks {
     
     public JavaTanks(){	
 	//init main parts of the game
+	inp = new Input();
 	strat  = new Game();
-	render = new Renderer();
-	inp = new Input(render);
+	render = new Renderer(inp);
     }
     public void mainInit(){
-	inp.init();
 	strat.init();
 	render.init();
     }
@@ -31,9 +30,10 @@ public class JavaTanks {
 	    frameTime = System.nanoTime();
 	    double delta = updateLength / (double)TARGET_TIME;
 	    
-	    inp.update();
+	    //inp.startUpdate();
 	    strat.update(delta);
 	    render.update();
+	    //inp.finishUpdate();
 
 	    //sleep for some miliseconds to limit the framerate
 	    try{Thread.sleep((frameTime-System.nanoTime()+TARGET_TIME) / 1000000 );} catch (Exception e){}
@@ -41,7 +41,6 @@ public class JavaTanks {
 	}
     }
     public void mainRelease(){
-	inp.release();
 	strat.release();
 	render.release();
 	//quits
