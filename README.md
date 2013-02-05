@@ -23,9 +23,9 @@ How to run the project
 ---------
 
 Windows:
-- Compile all the files (if you are not using an IDE, then may have compile each file manualy). Example:
+- Compile all .java files of the project:
 
-    javac JavaTanks.java
+    javac *.java
 
 - Run the JavaTanks class with command:
 
