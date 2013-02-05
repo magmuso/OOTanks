@@ -44,7 +44,8 @@ CLASSES = \
 	Input.java \
 	Game.java \
 	Renderer.java \
-	Entity.java
+	Entity.java \
+	Land.java
 
 
 #

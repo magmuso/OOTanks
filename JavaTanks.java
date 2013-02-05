@@ -12,11 +12,11 @@ public class JavaTanks {
 	strat  = new Game();
 	render = new Renderer(inp);
     }
-    public void mainInit(){
+    private void mainInit(){
 	strat.init();
 	render.init();
     }
-    public void mainLoop(){
+    private void mainLoop(){
 	// constants for game loop timer
 	final int FPS_TARGET = 60;
 	final long TARGET_TIME = 1000000000/FPS_TARGET;
@@ -40,7 +40,7 @@ public class JavaTanks {
 
 	}
     }
-    public void mainRelease(){
+    private void mainRelease(){
 	strat.release();
 	render.release();
 	//quits

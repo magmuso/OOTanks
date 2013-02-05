@@ -10,16 +10,21 @@ public class Renderer extends Canvas{
     private JFrame frame;
     private BufferStrategy buffer;
     private Graphics graphic;
+
+    public final int width;
+    public final int height;
     //constructor
     public Renderer(Input inp){
+	width = 800;
+	height = 600;
 	frame = new JFrame("OOTanks");
 	//get content of the frame, determine size
 	JPanel panel = (JPanel) frame.getContentPane();
-	panel.setPreferredSize(new Dimension(800,600));
+	panel.setPreferredSize(new Dimension(width,height));
 	panel.setLayout(null);
 
 	//set up canvas and boundaries, add panel to 'this' canvas
-	setBounds(0,0,800,600);
+	setBounds(0,0,width,height);
 	panel.add(this);
 	
 	//we will paint manually, so
@@ -51,7 +56,7 @@ public class Renderer extends Canvas{
 	
 	//fill background to green (Green for no reason)
 	graphic.setColor(Color.GREEN);
-	graphic.fillRect(0,0,800,600);
+	graphic.fillRect(0,0,width,height);
 
 	//drawing will be done here
 
