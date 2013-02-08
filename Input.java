@@ -22,10 +22,10 @@ public class Input implements KeyListener{
                 downPressed = true;
             }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                upPressed = true;
+                leftPressed = true;
             }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                downPressed = true;
+                rightPressed = true;
             }
     } 
     //key class, do not rename/remove
@@ -37,10 +37,10 @@ public class Input implements KeyListener{
                 downPressed = false;
             }
          if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            	upPressed = false;
+            	leftPressed = false;
             }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            	downPressed = false;
+            	rightPressed = false;
             }	
     }
     //key class, do not rename/remove
