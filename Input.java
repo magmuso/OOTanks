@@ -11,37 +11,50 @@ public class Input implements KeyListener{
     //public void startUpdate(){}
     //public void finishUpdate(){}
     
-    boolean upPressed, downPressed;
-    
+    public boolean[] buttons1 = new boolean[5];
+    /*
+    0 = up
+    1 = down
+    2 = left
+    3 = right
+    4 = space
+    */
+
     //key class, do not rename/remove
     public void keyPressed(KeyEvent e) {
     	if (e.getKeyCode() == KeyEvent.VK_UP) {
-                upPressed = true;
+                buttons1[0] = true;
             }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                downPressed = true;
+                buttons1[1] = true;
             }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                leftPressed = true;
+                buttons1[2] = true;
             }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                rightPressed = true;
+                buttons1[3] = true;
+            }
+        if (e.getKeyChar() == 49) {
+                buttons1[4] = true;
             }
     } 
     //key class, do not rename/remove
     public void keyReleased(KeyEvent e) {
     	if (e.getKeyCode() == KeyEvent.VK_UP) {
-                upPressed = false;
+                buttons1[0] = false;
             }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                downPressed = false;
+                buttons1[1] = false;
             }
          if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            	leftPressed = false;
+            	buttons1[2] = false;
             }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            	rightPressed = false;
-            }	
+            	buttons1[4] = false;
+            }
+        if (e.getKeyChar() == 49) {
+                buttons1[4] = false;
+            }
     }
     //key class, do not rename/remove
     public void keyTyped(KeyEvent e) {
