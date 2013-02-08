@@ -11,6 +11,10 @@ The following tutorial is very useful, because we should plan on doing the game 
 
 - http://www.cokeandcode.com/info/tut2d.html
 
+Good graphics tutorial:
+
+- http://docs.oracle.com/javase/tutorial/2d/basic2d/index.html
+
 Others:
 
 - http://beginwithjava.blogspot.co.uk/2008/07/very-basic-java-graphics-3-examples.html
