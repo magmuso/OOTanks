@@ -61,27 +61,30 @@ public class Renderer extends Canvas{
 	//drawing will be done here
 	
 	graphic.setColor(Color.blue);
-	   
+
+	int thickness = 4;
+	//not the most wise thing to do
+	for (int i = 0; i <= thickness; i++)
+	    graphic.draw3DRect(600 - i, 510 - i, 80 + 2 * i, 30 + 2 * i, true); //use tabbing, especially when not using {}
+	
+	//same as above
+	for (int i = 0; i < thickness; i++)
+	    graphic.draw3DRect(600 - i, 550 - i, 80 + 2 * i, 30 + 2 * i, false); //use tabbing, especially when not using {}
+	
+	int height = 200;
+	int width = 120;
 	  
-	 	int thickness = 4;
-	  
-	  	for (int i = 0; i <= thickness; i++)
-	    	graphic.draw3DRect(600 - i, 510 - i, 80 + 2 * i, 30 + 2 * i, true);
-	   	
-	  	for (int i = 0; i < thickness; i++)
-	    	graphic.draw3DRect(600 - i, 550 - i, 80 + 2 * i, 30 + 2 * i, false); 
-	    
-	 	int height = 200;
-		int width = 120;
-	  
-       		graphic.setColor(Color.red);
-      		graphic.drawRect(10, 10, height, width);
-      		graphic.setColor(Color.gray);
-      		graphic.fillRect(10, 10, height, width);
-      		graphic.setColor(Color.red);
-     		graphic.drawOval(250, 250, height, width);
-     		graphic.setColor(Color.yellow);
-     		graphic.fillOval(250, 250, height, width);
+       	graphic.setColor(Color.red);
+      	graphic.drawRect(10, 10, height, width);
+
+      	graphic.setColor(Color.gray);
+      	graphic.fillRect(10, 10, height, width);
+
+      	graphic.setColor(Color.red);
+     	graphic.drawOval(250, 250, height, width);
+
+     	graphic.setColor(Color.yellow);
+     	graphic.fillOval(250, 250, height, width);
         
 
 	//end of drawing

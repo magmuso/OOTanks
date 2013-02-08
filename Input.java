@@ -10,7 +10,9 @@ public class Input implements KeyListener{
     }
     //public void startUpdate(){}
     //public void finishUpdate(){}
-
+    
+    boolean upPressed, downPressed;
+    
     //key class, do not rename/remove
     public void keyPressed(KeyEvent e) {
     	if (e.getKeyCode() == KeyEvent.VK_UP) {
