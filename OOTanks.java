@@ -47,7 +47,7 @@ public class OOTanks {
 	System.exit(0);
     }
     public static void main(String[] args){
-	JavaTanks jt = new OOTanks();
+	OOTanks jt = new OOTanks();
 	jt.mainInit();
 	jt.mainLoop();
 	jt.mainRelease();
