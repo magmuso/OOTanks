@@ -1,8 +1,7 @@
 HelloWorld!
 =========
 
-Test edit.
-UoE group project.
+UoE group project OOTanks
 
 Links to tutorials: 
 ---------
@@ -31,11 +30,11 @@ Windows:
 
     javac *.java
 
-- Run the JavaTanks class with command:
+- Run the OOTanks class with command:
 
-    java JavaTanks
+    java OOTanks
 
 Linux:
 
     $ make
-    $ java JavaTanks
+    $ java OOTanks
