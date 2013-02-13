@@ -19,7 +19,7 @@ If running first time
 
 Gets files and initializes git repository in your local mashine. May ask for password and username of github.
 
-    $ git clone https://github.com/magniffico/JavaTanks.git
+    $ git clone https://github.com/magniffico/OOTanks.git
 
 Strongly recommended to set the master branch to:
 
