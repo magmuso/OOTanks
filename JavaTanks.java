@@ -1,12 +1,12 @@
 import java.awt.event.KeyListener;
 
-public class JavaTanks {
+public class OOTanks {
     
     private Input inp;
     private Game strat;
     private Renderer render;
     
-    public JavaTanks(){	
+    public OOTanks(){	
 	//init main parts of the game
 	inp = new Input();
 	strat  = new Game();
@@ -47,7 +47,7 @@ public class JavaTanks {
 	System.exit(0);
     }
     public static void main(String[] args){
-	JavaTanks jt = new JavaTanks();
+	JavaTanks jt = new OOTanks();
 	jt.mainInit();
 	jt.mainLoop();
 	jt.mainRelease();
