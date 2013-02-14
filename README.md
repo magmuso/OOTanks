@@ -10,6 +10,10 @@ The following tutorial is very useful, because we should plan on doing the game 
 
 - http://www.cokeandcode.com/info/tut2d.html
 
+Another awesome tutorial:
+
+http://www.java2s.com/Tutorial/Java/CatalogJava.htm
+
 Good graphics tutorial:
 
 - http://docs.oracle.com/javase/tutorial/2d/basic2d/index.html
