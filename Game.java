@@ -1,15 +1,16 @@
 public class Game{
-    //constructor
-    public Game(){
+	//constructor
 
-    }
-    public void init(){
+	public Game(){
 
-    }
-    public void update(double delta){
+	}
+	public void init(){
 
-    }
-    public void release(){
+	}
+	public void update(double delta){
+	
+	}
+	public void release(){
 
-    }
+	}
 };

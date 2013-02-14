@@ -10,6 +10,7 @@ public class Renderer extends Canvas{
     private JFrame frame;
     private BufferStrategy buffer;
     private Graphics graphic;
+    private Graphics2D g2D;
 
     public final int width;
     public final int height;
@@ -63,9 +64,13 @@ public class Renderer extends Canvas{
     public void update(){
 	//reset the graphics
 	graphic = null;
+	g2D = null;
 	
 	// get ready to draw
 	graphic = buffer.getDrawGraphics();
+
+	//creating a java 2D graphic object
+	g2D = (Graphics2D) graphic;
 	
 	//fill background to green (Green for no reason)
 	graphic.setColor(Color.GREEN);
