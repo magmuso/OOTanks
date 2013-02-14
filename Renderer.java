@@ -26,7 +26,7 @@ public class Renderer extends Canvas{
 	//set up canvas and boundaries, add panel to 'this' canvas
 	setBounds(0,0,width,height);
 	panel.add(this);
-	
+
 	//we will paint manually, so
 	setIgnoreRepaint(true);
 	frame.setIgnoreRepaint(true);
@@ -44,13 +44,26 @@ public class Renderer extends Canvas{
 	//handle input init. Sadly, we need to you this out of our canvas
 	setKeyListener(inp);
     }
+    
+    //function to draw square at (x,y)
+    public void drawTank(int x,int y){
+  	int h = 50;
+  	int w = 50;
+ 		
+ 	graphic.setColor(Color.darkGray);
+  	graphic.drawRect(x, y, h, w);
+  	graphic.fillRect(x, y, h, w);
+  	graphic.setColor(Color.GRAY);
+  	graphic.drawRect(x+50, y+20, 35, 10);
+  	graphic.fillRect(x+50, y+20, 35, 10);
+    }
     public void init(){
 	//load resources here
     }
     public void update(){
 	//reset the graphics
 	graphic = null;
-
+	
 	// get ready to draw
 	graphic = buffer.getDrawGraphics();
 	
@@ -60,7 +73,10 @@ public class Renderer extends Canvas{
 
 	//drawing will be done here
 	
-	graphic.setColor(Color.blue);
+	// drawTank function test: SUCCESS
+	drawTank(500,100);
+	// Garbage {
+	/* graphic.setColor(Color.blue);
 
 	int thickness = 4;
 	//not the most wise thing to do
@@ -85,8 +101,8 @@ public class Renderer extends Canvas{
 
      	graphic.setColor(Color.yellow);
      	graphic.fillOval(250, 250, height, width);
-        
-
+       */ 
+	// }
 	//end of drawing
 
 	//syncs everything to smooth java frames
