@@ -45,7 +45,7 @@ public class Renderer extends Canvas{
 	setKeyListener(inp);
     }
     
-    //function to draw square at (x,y)
+    //function to draw tank at (x,y)
     public void drawTank(int x,int y){
   	int h = 50;
   	int w = 50;
