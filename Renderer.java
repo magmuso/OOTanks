@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 public class Renderer extends Canvas{
     private JFrame frame;
     private BufferStrategy buffer;
-    private Graphics graphic;
+    private Graphics g;
     private Graphics2D g2D;
 
     public final int width;
@@ -46,40 +46,42 @@ public class Renderer extends Canvas{
 	setKeyListener(inp);
     }
     
-    //function to draw tank at (x,y)
-    public void drawTank(int x,int y){
-  	int h = 50;
+    //function to draw tank at (x,y) and rotate it by an angle in degrees
+    public void drawTank(int x,int y,int angle){
+  	int h = 100;
   	int w = 50;
- 		
- 	graphic.setColor(Color.darkGray);
-  	graphic.drawRect(x, y, h, w);
-  	graphic.fillRect(x, y, h, w);
-  	graphic.setColor(Color.GRAY);
-  	graphic.drawRect(x+50, y+20, 35, 10);
-  	graphic.fillRect(x+50, y+20, 35, 10);
+  		
+ 	g2D.setColor(Color.darkGray);
+  	g2D.drawRect(x, y, h, w);
+  	g2D.fillRect(x, y, h, w);
+  	g2D.setColor(Color.red);
+  	g2D.drawRect(x+50, y+20, 35, 10);
+  	g2D.fillRect(x+50, y+20, 35, 10);
+  	g2D.rotate((Math.toRadians(angle)));
+  
     }
     public void init(){
 	//load resources here
     }
     public void update(){
 	//reset the graphics
-	graphic = null;
+	g = null;
 	g2D = null;
 	
 	// get ready to draw
-	graphic = buffer.getDrawGraphics();
+	g = buffer.getDrawGraphics();
 
 	//creating a java 2D graphic object
-	g2D = (Graphics2D) graphic;
+	g2D = (Graphics2D) g;
 	
 	//fill background to green (Green for no reason)
-	graphic.setColor(Color.GREEN);
-	graphic.fillRect(0,0,width,height);
+	g2D.setColor(Color.GREEN);
+	g2D.fillRect(0,0,width,height);
 
 	//drawing will be done here
 	
 	// drawTank function test: SUCCESS
-	drawTank(500,100);
+	drawTank(500,100,180);
 	// Garbage {
 	/* graphic.setColor(Color.blue);
 
