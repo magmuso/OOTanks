@@ -18,6 +18,7 @@ public class OOTanks {
     }
     private void mainLoop(){
 	// constants for game loop timer
+	final double ADJUSTMENT = 10.0;
 	final int FPS_TARGET = 60;
 	final long TARGET_TIME = 1000000000/FPS_TARGET;
 	// init of run_game
@@ -28,11 +29,10 @@ public class OOTanks {
 	    //let's count the time taken to run a loop
 	    long updateLength = frameTime - System.nanoTime();
 	    frameTime = System.nanoTime();
-	    double delta = updateLength / (double)TARGET_TIME;
-	    
-	    //inp.startUpdate();
+	    double delta = updateLength / (double)TARGET_TIME / ADJUSTMENT;
+
 	    strat.update(delta);
-	    render.update();
+	    render.update(strat.map);
 	    //inp.finishUpdate();
 
 	    //sleep for some miliseconds to limit the framerate

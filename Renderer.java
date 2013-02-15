@@ -47,23 +47,22 @@ public class Renderer extends Canvas{
     }
     
     //function to draw tank at (x,y) and rotate it by an angle in degrees
-    public void drawTank(int x,int y,int angle){
+    public void drawTank(int x,int y,double angle){
   	int h = 100;
   	int w = 50;
-  		
+  	g2D.rotate((Math.toRadians(angle)));
  	g2D.setColor(Color.darkGray);
   	g2D.drawRect(x, y, h, w);
   	g2D.fillRect(x, y, h, w);
   	g2D.setColor(Color.red);
   	g2D.drawRect(x+50, y+20, 35, 10);
   	g2D.fillRect(x+50, y+20, 35, 10);
-  	g2D.rotate((Math.toRadians(angle)));
   
     }
     public void init(){
 	//load resources here
     }
-    public void update(){
+    public void update(Land map){
 	//reset the graphics
 	g = null;
 	g2D = null;
@@ -79,9 +78,10 @@ public class Renderer extends Canvas{
 	g2D.fillRect(0,0,width,height);
 
 	//drawing will be done here
-	
-	// drawTank function test: SUCCESS
-	drawTank(500,100,180);
+	for(Tank tank : map.tanks)
+		drawTank((int)tank.x,(int)tank.y,tank.angle);
+		// drawTank function test: SUCCESS
+
 	// Garbage {
 	/* graphic.setColor(Color.blue);
 
