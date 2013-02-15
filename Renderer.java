@@ -50,14 +50,15 @@ public class Renderer extends Canvas{
     public void drawTank(int x,int y,int angle){
   	int h = 100;
   	int w = 50;
-  		
+  	
+  	g2D.rotate((Math.toRadians(angle)));
  	g2D.setColor(Color.darkGray);
   	g2D.drawRect(x, y, h, w);
   	g2D.fillRect(x, y, h, w);
   	g2D.setColor(Color.red);
   	g2D.drawRect(x+50, y+20, 35, 10);
   	g2D.fillRect(x+50, y+20, 35, 10);
-  	g2D.rotate((Math.toRadians(angle)));
+
   
     }
     public void init(){
@@ -81,7 +82,7 @@ public class Renderer extends Canvas{
 	//drawing will be done here
 	
 	// drawTank function test: SUCCESS
-	drawTank(500,100,180);
+	drawTank(500,100,10);
 	// Garbage {
 	/* graphic.setColor(Color.blue);
 
