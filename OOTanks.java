@@ -32,7 +32,7 @@ public class OOTanks {
 	    
 	    //inp.startUpdate();
 	    strat.update(delta);
-	    render.update();
+	    render.update(strat.map);
 	    //inp.finishUpdate();
 
 	    //sleep for some miliseconds to limit the framerate

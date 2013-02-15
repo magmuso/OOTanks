@@ -64,7 +64,7 @@ public class Renderer extends Canvas{
     public void init(){
 	//load resources here
     }
-    public void update(){
+    public void update(Land map){
 	//reset the graphics
 	g = null;
 	g2D = null;
@@ -82,7 +82,9 @@ public class Renderer extends Canvas{
 	//drawing will be done here
 	
 	// drawTank function test: SUCCESS
-	drawTank(500,100,10);
+	for(Tank tank: map.tanks){
+		drawTank((int)tank.x,(int)tank.y,10);
+	}
 	// Garbage {
 	/* graphic.setColor(Color.blue);
 
