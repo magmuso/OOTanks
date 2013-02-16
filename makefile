@@ -3,7 +3,7 @@
 # define compiler and compiler flag variables
 #
 
-JFLAGS = -g
+JFLAGS = -g -d debug
 JC = javac
 
 
@@ -32,7 +32,7 @@ JC = javac
 #
 
 .java.class:
-	$(JC) $(JFLAGS) $*.java
+	$(JC) $(JFLAGS) $(JDESTINATION) $*.java
 
 
 #
