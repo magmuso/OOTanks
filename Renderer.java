@@ -35,29 +35,35 @@ public class Renderer extends Canvas{
 	frame.pack();
 	frame.setResizable(false);
 	frame.setVisible(true);
-	
+
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	//creating buffering strategy
 	createBufferStrategy(2);
 	buffer = getBufferStrategy();
-	
+
 	//handle input init. Sadly, we need to you this out of our canvas
 	setKeyListener(inp);
     }
-    
+
     //function to draw tank at (x,y) and rotate it by an angle in degrees
     public void drawTank(int x,int y,double angle){
-  	int h = 100;
-  	int w = 50;
-  	g2D.rotate((Math.toRadians(angle)));
+  	int w = 60;
+  	int h = 30;
+	g2D.translate(x,y);
+  	g2D.rotate(angle);
+
  	g2D.setColor(Color.darkGray);
-  	g2D.drawRect(x, y, h, w);
-  	g2D.fillRect(x, y, h, w);
-  	g2D.setColor(Color.red);
-  	g2D.drawRect(x+50, y+20, 35, 10);
-  	g2D.fillRect(x+50, y+20, 35, 10);
-  
+  	g2D.drawRect(-w/2, -h/2, w, h);
+  	g2D.fillRect(-w/2, -h/2, w, h);
+	g2D.setColor(Color.BLUE);
+	g2D.fillArc(-20,-10,20,20,0,360);
+  	g2D.setColor(Color.RED);
+  	g2D.drawRect(-w/2+30, -h/2+12, 21, 6);
+  	g2D.fillRect(-w/2+30, -h/2+12, 21, 6);
+	g2D.rotate(-angle);
+	g2D.translate(-x,-y);
+
     }
     public void init(){
 	//load resources here
@@ -66,13 +72,13 @@ public class Renderer extends Canvas{
 	//reset the graphics
 	g = null;
 	g2D = null;
-	
+
 	// get ready to draw
 	g = buffer.getDrawGraphics();
 
 	//creating a java 2D graphic object
 	g2D = (Graphics2D) g;
-	
+
 	//fill background to green (Green for no reason)
 	g2D.setColor(Color.GREEN);
 	g2D.fillRect(0,0,width,height);
@@ -90,14 +96,14 @@ public class Renderer extends Canvas{
 	//not the most wise thing to do
 	for (int i = 0; i <= thickness; i++)
 	    graphic.draw3DRect(600 - i, 510 - i, 80 + 2 * i, 30 + 2 * i, true); //use tabbing, especially when not using {}
-	
+
 	//same as above
 	for (int i = 0; i < thickness; i++)
 	    graphic.draw3DRect(600 - i, 550 - i, 80 + 2 * i, 30 + 2 * i, false); //use tabbing, especially when not using {}
-	
+
 	int height = 200;
 	int width = 120;
-	  
+
        	graphic.setColor(Color.red);
       	graphic.drawRect(10, 10, height, width);
 
