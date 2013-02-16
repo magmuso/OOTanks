@@ -7,7 +7,6 @@ public class Tank extends GameEntity{
 		maxSpeed = 5.0;
 		controller = control;
 	}
-
 	//tank fire function
 	public void fire() {}
 };

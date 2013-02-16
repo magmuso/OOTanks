@@ -50,6 +50,10 @@ public class Renderer extends Canvas{
     public void drawTank(int x,int y,double angle){
   	int h = 100;
   	int w = 50;
+<<<<<<< HEAD
+=======
+  	
+>>>>>>> e44a3a89dff492a4b9a0440365b60d5c89ed58e7
   	g2D.rotate((Math.toRadians(angle)));
  	g2D.setColor(Color.darkGray);
   	g2D.drawRect(x, y, h, w);
@@ -57,6 +61,10 @@ public class Renderer extends Canvas{
   	g2D.setColor(Color.red);
   	g2D.drawRect(x+50, y+20, 35, 10);
   	g2D.fillRect(x+50, y+20, 35, 10);
+<<<<<<< HEAD
+=======
+
+>>>>>>> e44a3a89dff492a4b9a0440365b60d5c89ed58e7
   
     }
     public void init(){
@@ -78,10 +86,18 @@ public class Renderer extends Canvas{
 	g2D.fillRect(0,0,width,height);
 
 	//drawing will be done here
+<<<<<<< HEAD
 	for(Tank tank : map.tanks)
 		drawTank((int)tank.x,(int)tank.y,tank.angle);
 		// drawTank function test: SUCCESS
 
+=======
+	
+	// drawTank function test: SUCCESS
+	for(Tank tank: map.tanks){
+		drawTank((int)tank.x,(int)tank.y,10);
+	}
+>>>>>>> e44a3a89dff492a4b9a0440365b60d5c89ed58e7
 	// Garbage {
 	/* graphic.setColor(Color.blue);
 
