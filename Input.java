@@ -57,7 +57,7 @@ public class Input implements KeyListener{
 			buttons1[2] = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			buttons1[4] = false;
+			buttons1[3] = false;
 		}
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
 			buttons1[4] = false;
