@@ -31,7 +31,7 @@ public class OOTanks {
 	    frameTime = System.nanoTime();
 	    double delta = updateLength / (double)TARGET_TIME / ADJUSTMENT;
 
-	    strat.update(delta);
+	    strat.update(inp, delta);
 	    render.update(strat.map);
 	    //inp.finishUpdate();
 

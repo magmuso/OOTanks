@@ -5,13 +5,17 @@ public class Game{
 		map = new Land(800,600);
 	}
 	public void init(){
-		map.createTank(100,100,0);
-		map.createTank(200,300,0);
+		createTank(100,100,1);
 	}
-	public void update(double delta){
-	
+	public void update(Input inp, double delta){
+		for(Tank tank: map.tanks){
+			tank.update(inp, delta);
+		}
 	}
 	public void release(){
 
+	}
+	private void createTank(double x, double y, int ctrl){
+		map.tanks.add(new Tank(x, y, ctrl));
 	}
 };

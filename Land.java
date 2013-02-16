@@ -12,7 +12,4 @@ public class Land {
 		height = in_h;
 		tanks = new ArrayList<Tank>();
 	}
-	public void createTank(double x, double y, int ctrl){
-		tanks.add(new Tank(x, y, ctrl));
-	}
 }

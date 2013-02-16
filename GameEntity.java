@@ -1,56 +1,57 @@
-public class GameEntity extends Entity{
-	public double v_x;
-	public double v_y;
-	public double maxSpeed;
+public class GameEntity extends Entity implements Physics{
+	public double v;
 	public double angle;
+	protected double maxSpeed;
+	protected final double weight;
+	protected final double stopA;
+
+	//useful to prevent passing to everywhere
+	protected double time;
 	//constructor
-	public GameEntity(double in_x, double in_y){
+	public GameEntity(double in_x, double in_y, double in_w){
 		super(in_x,in_y);	
-		v_x = 0.0;
-		v_y = 0.0;
+		v = 0;
 		angle = 0.0;
-		maxSpeed = 0.0;
+		maxSpeed = 10.0;
+		weight = in_w;
+		stopA = MIU*G;
+		time = 0;
 	}
 	//updates the object
-	public void update(){
-		normaliseVelocity();
+	public void applyPhisics(){
+		applyFriction();
+		normaliseV();
 		move();
 	}
 	
-	//moves object according to the velocity
-	private void move(){
-		x += v_x;
-		y += v_y;
-		countAngle();
-		//implement collision detection here??????
-		//
+	//moves object according to the v
+	protected void move(){
+		x += Math.cos(angle)*v;
+		y += Math.sin(angle)*v;
 	}
-	private void countAngle(){
-	/*
-	//trying to figure out math here blarghghgh
-		double result;	
-		if(v_x < 0){
-			if (v_x > -0.001) {
-				if (v_y < 0) result = Math.pi;
-				else result = -Math.pi;
-			} else result = atan(v_y/v_x) + Math.pi;
-		} else {
-			if(v_x < 0.001) {
-				if (v_y < 0)result = -Math.pi/2.0;
-				else result = Math.pi/2.0;
-			} else result = atain(v_y/v_x);
-		}
-		//check the result if it is not completely different from what it was before
-		
-		//
-		*/
+	protected void accelerate(double num){
+		v += num*time;
+	}
+	protected void turn(double num){
+		double stopV = stopA*time;
+		if (v > stopV*4 || v < -stopV*4) angle += time*num*0.5;
+	}
+	private void applyFriction(){
+		double stopV = stopA*time;
+
+		if (v > stopV) v -= stopV;
+		else if (v < -stopV) v+= stopV;
+		else v = 0;
+
 	}
 	//this function handles the velocity if it is going beyond scope
-	private void normaliseVelocity(){
-		double diff = Math.sqrt(v_x*v_x+v_y*v_y)/maxSpeed;
-		if (diff > 1){
-			v_x = v_x / diff;
-			v_y = v_y / diff;
-		}
+	private void normaliseV(){
+		if (v > maxSpeed) v = maxSpeed;
+		else if (v < -maxSpeed) v = -maxSpeed;
+	}
+	//function to normalize deltatime
+	// need to config the constant
+	public static double dTime(double time){
+		return Math.abs(-time);
 	}
 };
