@@ -65,6 +65,16 @@ public class Renderer extends Canvas{
 	g2D.translate(-x,-y);
 
     }
+    public void drawWeapon(int x, int y, double angle){
+	int d = 4;
+	g2D.translate(x,y);
+	g2D.rotate(angle);
+	
+	g2D.setColor(Color.BLACK);
+	g2D.fillArc(-d*3/2, -d/2, d*3, d, 0, 360);	
+	g2D.rotate(-angle);
+	g2D.translate(-x,-y);
+    }
     public void init(){
 	//load resources here
     }
@@ -86,9 +96,11 @@ public class Renderer extends Canvas{
 	//drawing will be done here
 
 	for(Tank tank : map.tanks)
-		drawTank((int)tank.x,(int)tank.y,tank.angle);
+		drawTank((int)tank.x, (int)tank.y, tank.angle);
 		// drawTank function test: SUCCESS
-
+	for(Weapon wep : map.weapons)
+		if (wep.active)
+			drawWeapon((int)wep.x, (int)wep.y, wep.angle);
 	// Garbage {
 	/* graphic.setColor(Color.blue);
 

@@ -12,15 +12,17 @@ public class GameEntity extends Entity implements Physics{
 		super(in_x,in_y);	
 		v = 0;
 		angle = 0.0;
-		maxSpeed = 10.0;
+		maxSpeed = 1000.0;
 		weight = in_w;
 		stopA = MIU*G;
 		time = 0;
 	}
 	//updates the object
-	public void applyPhisics(){
-		applyFriction();
-		normaliseV();
+	public void applyPhysics(){
+		if(weight > 0.1){
+			applyFriction();
+			normaliseV();
+		}
 		move();
 	}
 	
@@ -47,7 +49,7 @@ public class GameEntity extends Entity implements Physics{
 	//this function handles the velocity if it is going beyond scope
 	private void normaliseV(){
 		if (v > maxSpeed) v = maxSpeed;
-		else if (v < -maxSpeed) v = -maxSpeed;
+		else if (v < -maxSpeed/2) v = -maxSpeed/2;
 	}
 	//function to normalize deltatime
 	// need to config the constant
