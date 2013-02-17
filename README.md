@@ -1,4 +1,4 @@
-HelloWorld!
+OOTanks
 =========
 
 UoE group project OOTanks
@@ -12,7 +12,7 @@ The following tutorial is very useful, because we should plan on doing the game 
 
 Another awesome tutorial:
 
-http://www.java2s.com/Tutorial/Java/CatalogJava.htm
+- http://www.java2s.com/Tutorial/Java/CatalogJava.htm
 
 Good graphics tutorial:
 
@@ -32,13 +32,13 @@ How to run the project
 Windows:
 - Compile all .java files of the project:
 
-    javac *.java
+    javac -g -d debug OOTanks.java
 
 - Run the OOTanks class with command:
 
-    java OOTanks
+    java -cp debug OOTanks
 
 Linux:
 
     $ make
-    $ java OOTanks
+    $ java -cp debug OOTanks
