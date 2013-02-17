@@ -39,7 +39,7 @@ JC = javac
 # CLASSES is a macro consisting of 4 words (one for each java source file)
 #
 
-CLASSES = *.java
+CLASSES = OOTanks.java
 
 
 #

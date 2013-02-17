@@ -1,5 +1,9 @@
 import java.awt.event.KeyListener;
 
+import core.engine.Game;
+import core.engine.Input;
+import graphics.Renderer;
+
 public class OOTanks {
     
     private Input inp;
