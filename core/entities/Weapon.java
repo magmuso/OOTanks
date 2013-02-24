@@ -1,43 +1,35 @@
 package core.entities;
 
-public class Weapon extends GameEntity{
-	public int damage;
-	public boolean active;
-	public double distance;
-	public long lastLaunch;
-	public Weapon(int in_dmg, double in_dist, double in_v){
-		super(0, 0, 0.0);
-		distance = in_dist;
+public class Weapon{
+	protected int rate;
+	protected short proj_num;
+	protected Projectile proj;
+	private long lastLaunch;
+	
+	public Weapon(Projectile in_proj, int in_rate ){
+		rate = in_rate;
 		lastLaunch = 0;
-		damage = in_dmg;
-		v = in_v;
-		active = false;
+		proj = in_proj;
+		proj_num = 1;
 	}
-	public Weapon(Weapon wep){
-		super(wep.x,wep.y,0.0);
-		angle = wep.angle;
-		distance = wep.distance;
-		damage = wep.damage;
-		v = wep.v;
-		active = wep.active;
-	}
-	public void launch(double in_angle, double in_x, double in_y){
-		lastLaunch = System.currentTimeMillis();
-		active  = true;
-		angle = in_angle;
-		x = in_x;
-		y = in_y;
-	}
-	public void shutDown(){
-		active = false;
-	}
-	public void update(double delta){
-		time = dTime(delta);
-		applyPhysics();
-		distance -= v;
-		if (distance < 0){
-			active = false;
-			//explode??	
+	
+	public Projectile[] launch(double in_x, double in_y, double angle){
+		Projectile[] result = new Projectile[proj_num];
+		if(System.currentTimeMillis() - lastLaunch > rate && proj_num > 0 && proj_num < 4){
+			if (proj_num == 1){
+				result[0] = new Projectile(proj, in_x, in_y, angle);
+			} else if (proj_num == 2){
+				result[0] = new Projectile(proj, in_x, in_y, angle);
+				result[1] = new Projectile(proj, in_x, in_y, angle);
+			} else if (proj_num == 3){
+				result[0] = new Projectile(proj, in_x, in_y, angle);
+				result[1] = new Projectile(proj, in_x, in_y, angle);
+				result[2] = new Projectile(proj, in_x, in_y, angle);
+			}
+			lastLaunch = System.currentTimeMillis();
+			return result;
+		} else {
+			return null;
 		}
 	}
 };

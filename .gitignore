@@ -1,6 +1,9 @@
 #ignored folders
 debug/
+.settings/
 
 #ignored file types
 *.class
 *~
+.project
+.classpath

@@ -3,16 +3,14 @@ package graphics;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowAdapter;
 import java.awt.image.BufferStrategy;
-import java.awt.event.KeyListener;
 
 import core.engine.Land;
 import core.engine.Input;
 import core.entities.Tank;
-import core.entities.Weapon;
+import core.entities.Projectile;
 
+@SuppressWarnings("serial")
 public class Renderer extends Canvas{
     private JFrame frame;
     private BufferStrategy buffer;
@@ -72,7 +70,7 @@ public class Renderer extends Canvas{
 	g2D.translate(-x,-y);
 
     }
-    public void drawWeapon(int x, int y, double angle){
+    public void drawProjectile(int x, int y, double angle){
 	int d = 4;
 	g2D.translate(x,y);
 	g2D.rotate(angle);
@@ -105,9 +103,9 @@ public class Renderer extends Canvas{
 	for(Tank tank : map.tanks)
 		drawTank((int)tank.getX(), (int)tank.getY(), tank.angle);
 		// drawTank function test: SUCCESS
-	for(Weapon wep : map.weapons)
-		if (wep.active)
-			drawWeapon((int)wep.getX(), (int)wep.getY(), wep.angle);
+	for(Projectile proj : map.projectiles){
+		drawProjectile((int)proj.getX(), (int)proj.getY(), proj.angle);
+	}
 	// Garbage {
 	/* graphic.setColor(Color.blue);
 

@@ -4,9 +4,7 @@ package core.engine;
 // Good enough for now
 */
 import java.awt.event.KeyListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
 
 public class Input implements KeyListener{
 	public boolean[] buttons1 = new boolean[5];
