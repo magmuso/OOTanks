@@ -17,12 +17,17 @@ public class Input implements KeyListener{
 	*/
 
 	//constructor
-
+	/**
+	 * Input handler constructor
+	 */
 	public Input(){
 
 	}
 
-	//key class, do not rename/remove
+	/**
+	 * key function, do not rename/remove
+	 * checks if a key is pressed
+	 */
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			buttons1[0] = true;
@@ -41,7 +46,10 @@ public class Input implements KeyListener{
 		}
 	}
 
-	//key class, do not rename/remove
+	/**
+	 * key function, do not rename/remove
+	 * checks if a key is released
+	 */
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			buttons1[0] = false;
@@ -59,7 +67,11 @@ public class Input implements KeyListener{
 			buttons1[4] = false;
 		}
 	}
-	//key class, do not rename/remove
+
+	/**
+	 * key function, do not rename/remove
+	 * checks if a key is typed
+	 */
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyChar() == 27) {
 			System.exit(0);

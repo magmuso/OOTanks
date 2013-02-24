@@ -52,37 +52,57 @@ public class Renderer extends Canvas{
     }
 
     //function to draw tank at (x,y) and rotate it by an angle in degrees
+    /**
+     * Draws a tank
+     * @param x X centre coordinate of the tank
+     * @param y Y centre coordinate of the tank
+     * @param angle
+     */
     public void drawTank(int x,int y,double angle){
-  	int w = 60;
-  	int h = 30;
-	g2D.translate(x,y);
-  	g2D.rotate(angle);
-
- 	g2D.setColor(Color.darkGray);
-  	g2D.drawRect(-w/2, -h/2, w, h);
-  	g2D.fillRect(-w/2, -h/2, w, h);
-	g2D.setColor(Color.BLUE);
-	g2D.fillArc(-20,-10,20,20,0,360);
-  	g2D.setColor(Color.RED);
-  	g2D.drawRect(-w/2+30, -h/2+12, 21, 6);
-  	g2D.fillRect(-w/2+30, -h/2+12, 21, 6);
-	g2D.rotate(-angle);
-	g2D.translate(-x,-y);
-
-    }
-    public void drawProjectile(int x, int y, double angle){
-	int d = 4;
-	g2D.translate(x,y);
-	g2D.rotate(angle);
+	  	int w = 60;
+	  	int h = 30;
+		g2D.translate(x,y);
+	  	g2D.rotate(angle);
 	
-	g2D.setColor(Color.BLACK);
-	g2D.fillArc(-d*3/2, -d/2, d*3, d, 0, 360);	
-	g2D.rotate(-angle);
-	g2D.translate(-x,-y);
+	 	g2D.setColor(Color.darkGray);
+	  	g2D.drawRect(-w/2, -h/2, w, h);
+	  	g2D.fillRect(-w/2, -h/2, w, h);
+		g2D.setColor(Color.BLUE);
+		g2D.fillArc(-20,-10,20,20,0,360);
+	  	g2D.setColor(Color.RED);
+	  	g2D.drawRect(-w/2+30, -h/2+12, 21, 6);
+	  	g2D.fillRect(-w/2+30, -h/2+12, 21, 6);
+		g2D.rotate(-angle);
+		g2D.translate(-x,-y);
+
     }
+    /**
+     * Draws a projectile
+     * @param x X centre coordinate of the Projectile
+     * @param y Y centre coordinate of the Projectile
+     * @param angle Angle of the Projectile
+     */
+    public void drawProjectile(int x, int y, double angle){
+		int d = 8;
+		g2D.translate(x-12,y);
+		g2D.rotate(angle);
+		
+		g2D.setColor(Color.BLACK);
+		g2D.fillArc(-d/2+12, -d/2, d, d, 0, 360);	
+		g2D.rotate(-angle);
+		g2D.translate(-x+12,-y);
+    }
+    /**
+     * Initialises the renderer, loads resources.
+     */
     public void init(){
 	//load resources here
     }
+    
+    /**
+     * Renders the game each frame
+     * @param map map that the objects will be taken from
+     */
     public void update(Land map){
 	//reset the graphics
 	g = null;
@@ -144,10 +164,16 @@ public class Renderer extends Canvas{
 	    System.out.println("Data Lost in buffer");
 	}
     }
+    /**
+     * Releases used resources
+     */
     public void release(){
 
     }
-    //input handler
+    /**
+     * Function for input handler and to sync Canvas 
+     * @param inp input handler
+     */
     public void setKeyListener(Input inp) {
 	addKeyListener(inp);
        	requestFocus();

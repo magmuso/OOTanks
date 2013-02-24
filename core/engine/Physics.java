@@ -1,5 +1,7 @@
 package core.engine;
-
+/**
+ * Basically, a class to hold constants
+ */
 public interface Physics {
 	public static final double MIU = 0.3;
 	public static final double PI = 3.141592653589793;
