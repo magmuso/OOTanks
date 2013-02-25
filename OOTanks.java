@@ -1,18 +1,14 @@
 import core.engine.Game;
-import core.engine.Input;
 import graphics.Renderer;
 
 public class OOTanks {
-
-	private Input inp;
 	private Game strat;
 	private Renderer render;
 
 	public OOTanks(){	
 		//init main parts of the game
-		inp = new Input();
 		strat  = new Game();
-		render = new Renderer(inp);
+		render = new Renderer(strat.inp);
 	}
 	private void mainInit(){
 		strat.init();
@@ -35,7 +31,7 @@ public class OOTanks {
 			frameTime = System.nanoTime();
 			double delta = updateLength / (double)TARGET_TIME / ADJUSTMENT;
 
-			strat.update(inp, delta);
+			strat.update(delta);
 			render.update(strat.map);
 
 			//sleep for some milliseconds to limit the frame rate

@@ -2,22 +2,13 @@ package core.engine;
 
 import java.util.ArrayList;
 
-import core.entities.Tank;
-import core.entities.Projectile;
+import core.entities.GameEntity;
 
 public class Land {
 	public final int width;
 	public final int height;
 	
-	/**
-	 * List of tanks on the map
-	 */
-	public ArrayList<Tank> tanks;
-	
-	/**
-	 * List of projectiles on the map
-	 */
-	public ArrayList<Projectile> projectiles;	
+	public ArrayList<GameEntity> gameEntities;
 	
 	/**
 	 * Map constructor
@@ -27,7 +18,6 @@ public class Land {
 	public Land(int in_w, int in_h){
 		width = in_w;
 		height = in_h;
-		tanks = new ArrayList<Tank>();
-		projectiles = new ArrayList<Projectile>();
+		gameEntities = new ArrayList<GameEntity>();
 	}
 }

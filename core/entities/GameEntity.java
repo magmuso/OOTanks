@@ -1,46 +1,34 @@
 package core.entities;
 
 import core.engine.Physics;
+import core.engine.Land;
 
-abstract class GameEntity extends Entity implements Physics{
+public abstract class GameEntity extends Entity implements Physics{
 	protected double width;
 	protected double height;
 	
-	public double v;
-	public double angle;
-	protected double maxSpeed;
+	protected double angle;
+	protected double v;
+	protected double maxVelocity;
+	
 	protected final int weight;
-	protected final double stopA;
 
 	//useful to prevent passing to everywhere
 	protected double time;
 	//constructor
-	public GameEntity(double in_x, double in_y, double in_width, double in_height, int in_w){
-		super(in_x,in_y);
-		weight = in_w;
-		width = in_width;
-		height = in_height;
-		//set default values
-		v = 0;
-		angle = 0.0;
-		maxSpeed = 1000.0;
-		stopA = MIU*G;
-		time = 0;
+	public GameEntity(Land map, double x, double y, double width, double height, int weight){
+		super(map, x, y);
+		this.weight = weight;
+		this.width = width;
+		this.height = height;
 		//EO default values
 	}
-	//updates the object
-	/**
-	 * If weight > 0, applies friction and normalises velocity to the maximum
-	 * Moves the objects afterwards.
-	 */
-	protected void applyPhysics(){
-		if(weight > 0){
-			applyFriction();
-			normaliseV();
-		}
-		move();
-	}
 	
+	/*
+	 * *****************
+	 * Protected classes
+	 * *****************
+	 */
 	/**
 	 * Accelerates the entity
 	 * @param	num		value of acceleration
@@ -63,6 +51,18 @@ abstract class GameEntity extends Entity implements Physics{
 	/**
 	 *  Moves the object
 	 */
+	protected void applyMovement(boolean light){
+		if(!light){
+			applyFriction();
+		}
+		normaliseV();
+		move();
+	}
+	/*
+	 * *****************
+	 * Private functions
+	 * *****************
+	 */
 	private void move(){
 		x += Math.cos(angle)*v*time;
 		y += Math.sin(angle)*v*time;
@@ -71,19 +71,23 @@ abstract class GameEntity extends Entity implements Physics{
 	 * Applies friction to the speed of the GameEntity
 	 */
 	private void applyFriction(){
-		if (v > stopA) v -= stopA;
-		else if (v < -stopA) v+= stopA;
+		if (v > MIU*G) v -= MIU*G;
+		else if (v < -MIU*G) v+= MIU*G;
 		else v = 0;
-
 	}
 
 	/**
-	 * Normalises the speed not to exceed the maximum. Note: maxSpeed going backwards is divided by two.
+	 * Normalises the speed not to exceed the maximum. Note: maxVelocity going backwards is divided by two.
 	 */
 	private void normaliseV(){
-		if (v > maxSpeed) v = maxSpeed;
-		else if (v < -maxSpeed/2) v = -maxSpeed/2;
+		if (v > maxVelocity) v = maxVelocity;
+		else if (v < -maxVelocity/2) v = -maxVelocity/2;
 	}
+	/*
+	 * ****************
+	 * Static functions
+	 * ****************
+	 */
 	/**
 	 * Returns a positive delta time.
 	 * @param	time	raw input of delta time
@@ -92,4 +96,30 @@ abstract class GameEntity extends Entity implements Physics{
 	public static double dTime(double time){
 		return Math.abs(-time);
 	}
+	/*
+	 * *************
+	 * Get functions
+	 * *************
+	 */
+	public double getAngle(){
+		return angle;
+	}
+	public double getVelocity(){
+		return v;
+	}
+	public double getWidth(){
+		return width;
+	}
+	public double getHeight(){
+		return height;
+	}
+	public double getMaxVelocity(){
+		return maxVelocity;
+	}
+	/*
+	 * ******************
+	 * Abstract functions
+	 * ******************
+	 */
+	abstract void onCollision();
 };

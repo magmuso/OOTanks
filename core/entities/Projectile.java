@@ -1,59 +1,37 @@
 package core.entities;
 
-public class Projectile extends GameEntity{
-	public int damage;
-	private boolean active;
-	public double distance;
-	/**
-	 * Constructor to be used to create an instance of projectile
-	 * @param proj image of projectile
-	 * @param in_x x coordinate to instantiate
-	 * @param in_y y coordinate to instantiate
-	 * @param in_angle angle to instantiate
-	 */
-	public Projectile(Projectile proj, double in_x, double in_y, double in_angle){
-		super(in_x,in_y, proj.width, proj.height, proj.weight);
-		active = true;
-		damage = proj.damage;
-		distance = proj.distance;
-		angle = in_angle;
-		v = proj.v;
-	}
-	/**
-	 * Crates an image of a projectile later to instantiate
-	 * @param width width of the projectile
-	 * @param height height of the projectile
-	 * @param in_dmg damage dealt by the projectile on hit
-	 * @param in_dist maximum distance of the projectile
-	 * @param in_v constant speed of the projectile
-	 */
-	public Projectile(double width, double height, int in_dmg, double in_dist, double in_v){
-		super(0.0, 0.0, width, height, 0);
-		active = false;
-		distance = in_dist;
-		damage = in_dmg;
-		v = in_v;
+import core.engine.Land;
 
-		//DEBUG
-		width=5;
-		height=3;
-		//
+public abstract class Projectile extends GameEntity{
+	public int damage;
+	public double distance;
+	public Projectile(double width, double height, int damage, double v, double distance) {
+		super(null, 0D, 0D, width, height, 0);
+		this.maxVelocity = v;
+		this.active = false;
+		this.damage = damage;
+		this.distance = distance;
 	}
-	/**
-	 * Moves the projectile 
-	 * @param delta takes delta time as an argument as any updateable entity
-	 */
-	public void update(double delta){
-		time = dTime(delta);
-		distance -= v*time;
-		applyPhysics();
-		if(distance <= 0) active=false;
+	public Projectile(Projectile proj, Land map, double x, double y, double angle){
+		super(map, x, y, proj.width, proj.height, 0);
+		this.damage = proj.damage;
+		this.distance = proj.distance;
+		this.active = true;
+		this.angle = angle;
+		this.v = proj.maxVelocity;
+		this.maxVelocity = proj.maxVelocity;
 	}
-	/**
-	 * Returns if a projectile is active
-	 * @return
-	 */
-	public boolean isActive(){
-		return active;
+	protected void fly(){
+		if (active){
+			distance -= v*time;
+			if(distance >= 0){
+				applyMovement(true);
+			} else {
+				active = false;
+			}
+		}
+	}
+	public void onCollision(){
+		
 	}
 }

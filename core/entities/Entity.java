@@ -1,12 +1,18 @@
 package core.entities;
 
-abstract class Entity {
+import core.engine.Land;
+
+public abstract class Entity {
 	protected double x; //current x coordinate
 	protected double y; //current y coordinate
-
-	public Entity(double in_x, double in_y){
-		x = in_x;
-		y = in_y;
+	protected Land map;
+	protected boolean active;
+	private int id;
+	public Entity(Land map, double x, double y){
+		this.map = map;
+		this.x = x;
+		this.y = y;
+		this.active = true;
 	}
 /*
 	public void teleport(int in_x, int in_y){
@@ -23,4 +29,14 @@ abstract class Entity {
 	 * @return y value of entity
 	 */
 	public double getY() { return y; }
+	public int getId(){
+		return id;
+	}
+	public void setId(int id){
+		this.id = id;
+	}
+	public boolean getActive(){
+		return active;
+	}
+	public abstract void update(double time);
 };

@@ -7,8 +7,7 @@ import java.awt.image.BufferStrategy;
 
 import core.engine.Land;
 import core.engine.Input;
-import core.entities.Tank;
-import core.entities.Projectile;
+import core.entities.GameEntity;
 
 @SuppressWarnings("serial")
 public class Renderer extends Canvas{
@@ -58,7 +57,7 @@ public class Renderer extends Canvas{
      * @param y Y centre coordinate of the tank
      * @param angle
      */
-    public void drawTank(int x,int y,double angle){
+    public void drawTank(int x,int y,double angle, int id){
 	  	int w = 60;
 	  	int h = 30;
 		g2D.translate(x,y);
@@ -82,15 +81,15 @@ public class Renderer extends Canvas{
      * @param y Y centre coordinate of the Projectile
      * @param angle Angle of the Projectile
      */
-    public void drawProjectile(int x, int y, double angle){
+    public void drawShell(int x, int y, double angle, int id){
 		int d = 8;
-		g2D.translate(x-12,y);
+		g2D.translate(x,y);
 		g2D.rotate(angle);
 		
 		g2D.setColor(Color.BLACK);
-		g2D.fillArc(-d/2+12, -d/2, d, d, 0, 360);	
+		g2D.fillArc(-d/2, -d/2, d, d, 0, 360);	
 		g2D.rotate(-angle);
-		g2D.translate(-x+12,-y);
+		g2D.translate(-x,-y);
     }
     /**
      * Initialises the renderer, loads resources.
@@ -103,6 +102,12 @@ public class Renderer extends Canvas{
      * Renders the game each frame
      * @param map map that the objects will be taken from
      */
+    public void draw(double x, double y, double width, double height, double angle, int id){
+    	if (id  < 10)
+    		drawTank((int)x,(int)y,angle,id);
+    	else if (id < 20)
+    		drawShell((int)x,(int)y,angle,id);
+    }
     public void update(Land map){
 	//reset the graphics
 	g = null;
@@ -120,11 +125,8 @@ public class Renderer extends Canvas{
 
 	//drawing will be done here
 
-	for(Tank tank : map.tanks)
-		drawTank((int)tank.getX(), (int)tank.getY(), tank.angle);
-		// drawTank function test: SUCCESS
-	for(Projectile proj : map.projectiles){
-		drawProjectile((int)proj.getX(), (int)proj.getY(), proj.angle);
+	for (GameEntity e : map.gameEntities){
+		draw(e.getX(),e.getY(),e.getWidth(),e.getHeight(),e.getAngle(), e.getId());
 	}
 	// Garbage {
 	/* graphic.setColor(Color.blue);
