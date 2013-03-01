@@ -15,6 +15,8 @@ public class Renderer extends Canvas{
     private BufferStrategy buffer;
     private Graphics g;
     private Graphics2D g2D;
+    
+    private GUI ui;
 
     public final int width;
     public final int height;
@@ -23,6 +25,7 @@ public class Renderer extends Canvas{
 	width = 800;
 	height = 600;
 	frame = new JFrame("OOTanks");
+	ui = new GUI();
 	//get content of the frame, determine size
 	JPanel panel = (JPanel) frame.getContentPane();
 	panel.setPreferredSize(new Dimension(width,height));
@@ -157,7 +160,8 @@ public class Renderer extends Canvas{
        */ 
 	// }
 	//end of drawing
-
+	
+	ui.update();
 	//syncs everything to smooth java frames
 	Toolkit.getDefaultToolkit().sync();
 	if(!buffer.contentsLost()){

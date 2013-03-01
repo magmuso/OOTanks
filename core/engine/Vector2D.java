@@ -27,4 +27,7 @@ public class Vector2D {
 	public static Vector2D dot(Vector2D v1, Vector2D v2){
 		return new Vector2D (v1.x*v2.x, v1.y*v2.y);
 	}
+	public static Vector2D times(Vector2D v, double t){
+		return new Vector2D (v.x*t, v.y*t);
+	}
 }
