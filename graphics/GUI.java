@@ -14,7 +14,9 @@ public class GUI{
 	
 	public void update(Graphics2D g2D){
 		//hull from 0 to 100
-		p1hull--;
+		if (p1hull > 0){
+			p1hull--;
+		}
 		int p2hull = 100;
 		int weapon = 0;
 		drawHull1(p1hull, g2D);
