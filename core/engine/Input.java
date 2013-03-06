@@ -29,16 +29,16 @@ public class Input implements KeyListener{
 	 * checks if a key is pressed
 	 */
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_W) {
 			buttons1[0] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if (e.getKeyCode() == KeyEvent.VK_S) {
                 	buttons1[1] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (e.getKeyCode() == KeyEvent.VK_A) {
 			buttons1[2] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyCode() == KeyEvent.VK_D) {
 			buttons1[3] = true;
 		}
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
@@ -51,16 +51,16 @@ public class Input implements KeyListener{
 	 * checks if a key is released
 	 */
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_W) {
 			buttons1[0] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if (e.getKeyCode() == KeyEvent.VK_S) {
 			buttons1[1] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (e.getKeyCode() == KeyEvent.VK_A) {
 			buttons1[2] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyCode() == KeyEvent.VK_D) {
 			buttons1[3] = false;
 		}
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
