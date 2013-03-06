@@ -123,7 +123,7 @@ public class Renderer extends Canvas{
 	g2D = (Graphics2D) g;
 
 	//fill background to green (Green for no reason)
-	g2D.setColor(new Color(0,150,0));
+	g2D.setColor(new Color(100,100,100));
 	g2D.fillRect(0,0,width,height);
 
 	//drawing will be done here
@@ -161,7 +161,7 @@ public class Renderer extends Canvas{
 	// }
 	//end of drawing
 	
-	ui.update();
+	ui.update(g2D);
 	//syncs everything to smooth java frames
 	Toolkit.getDefaultToolkit().sync();
 	if(!buffer.contentsLost()){
