@@ -1,9 +1,8 @@
 package graphics;
 
 import javax.swing.*;
-
-import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.*;
 
 import core.engine.Land;
 import core.engine.Input;
@@ -11,6 +10,9 @@ import core.entities.GameEntity;
 
 @SuppressWarnings("serial")
 public class Renderer extends Canvas{
+	private Sprite tank1;
+	private Sprite tank2;
+	private Sprite background;
     private JFrame frame;
     private BufferStrategy buffer;
     private Graphics g;
@@ -22,8 +24,8 @@ public class Renderer extends Canvas{
     public final int height;
     //constructor
     public Renderer(Input inp){
-	width = 800;
-	height = 600;
+	width = 1280;
+	height = 934;
 	frame = new JFrame("OOTanks");
 	ui = new GUI();
 	//get content of the frame, determine size
@@ -99,6 +101,9 @@ public class Renderer extends Canvas{
      */
     public void init(){
 	//load resources here
+    	tank1 = new Sprite("C:\\Users\\manasb\\Desktop\\Java workspace\\OOTanks\\tank1scaled.png");
+    	tank2 = new Sprite("C:\\Users\\manasb\\Desktop\\Java workspace\\OOTanks\\tank2scaled.png");
+    	background = new Sprite("C:\\Users\\manasb\\Desktop\\Java workspace\\OOTanks\\Terrain1scaled.png");
     }
     
     /**
@@ -122,46 +127,19 @@ public class Renderer extends Canvas{
 	//creating a java 2D graphic object
 	g2D = (Graphics2D) g;
 
-	//fill background to green (Green for no reason)
-	g2D.setColor(new Color(100,100,100));
-	g2D.fillRect(0,0,width,height);
-
+	//Sets background to terrain
+	background.draw(g2D, 0, 0, 0);
+	
 	//drawing will be done here
-
+	
 	for (GameEntity e : map.gameEntities){
 		draw(e.getX(),e.getY(),e.getWidth(),e.getHeight(),e.getAngle(), e.getId());
 	}
-	// Garbage {
-	/* graphic.setColor(Color.blue);
-
-	int thickness = 4;
-	//not the most wise thing to do
-	for (int i = 0; i <= thickness; i++)
-	    graphic.draw3DRect(600 - i, 510 - i, 80 + 2 * i, 30 + 2 * i, true); //use tabbing, especially when not using {}
-
-	//same as above
-	for (int i = 0; i < thickness; i++)
-	    graphic.draw3DRect(600 - i, 550 - i, 80 + 2 * i, 30 + 2 * i, false); //use tabbing, especially when not using {}
-
-	int height = 200;
-	int width = 120;
-
-       	graphic.setColor(Color.red);
-      	graphic.drawRect(10, 10, height, width);
-
-      	graphic.setColor(Color.gray);
-      	graphic.fillRect(10, 10, height, width);
-
-      	graphic.setColor(Color.red);
-     	graphic.drawOval(250, 250, height, width);
-
-     	graphic.setColor(Color.getYellow);
-     	graphic.fillOval(250, 250, height, width);
-       */ 
-	// }
+	
+	tank1.draw(g2D, 50, 100, 0);
 	//end of drawing
 	
-	ui.update(g2D);
+	ui.update();
 	//syncs everything to smooth java frames
 	Toolkit.getDefaultToolkit().sync();
 	if(!buffer.contentsLost()){
