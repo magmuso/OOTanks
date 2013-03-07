@@ -16,6 +16,7 @@ public class Game{
 	 * Initialises the game logic
 	 */
 	public void init(){
+		map.gameEntities.add(new HumanTank(map, inp,300,300, 0, 0, new ShellCannon(), 0, (byte)0));
 		map.gameEntities.add(new HumanTank(map, inp,100,100,0,0,new ShellCannon(),0,(byte)1));
 	}
 	/**
