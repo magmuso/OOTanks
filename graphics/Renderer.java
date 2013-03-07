@@ -1,7 +1,7 @@
 package graphics;
 
 import javax.swing.*;
-
+import java.awt.image.BufferStrategy;
 import java.awt.*;
 
 import core.engine.Land;
