@@ -12,7 +12,7 @@ public class OOTanks {
 	}
 	private void mainInit(){
 		strat.init();
-		render.init();
+		render.init(strat.players);
 	}
 	private void mainLoop(){
 

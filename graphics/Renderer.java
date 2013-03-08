@@ -8,10 +8,12 @@ package graphics;
 import javax.swing.*;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
+import java.util.ArrayList;
 
 import core.engine.Land;
 import core.engine.Input;
 import core.entities.GameEntity;
+import core.entities.top.HumanTank;
 
 @SuppressWarnings("serial")
 public class Renderer extends Canvas{
@@ -29,35 +31,35 @@ public class Renderer extends Canvas{
     public final int height;
     //constructor
     public Renderer(Input inp){
-	width = 1280;
-	height = 934;
-	frame = new JFrame("OOTanks");
-	ui = new GUI();
-	//get content of the frame, determine size
-	JPanel panel = (JPanel) frame.getContentPane();
-	panel.setPreferredSize(new Dimension(width,height));
-	panel.setLayout(null);
-
-	//set up canvas and boundaries, add panel to 'this' canvas
-	setBounds(0,0,width,height);
-	panel.add(this);
-
-	//we will paint manually, so
-	setIgnoreRepaint(true);
-	frame.setIgnoreRepaint(true);
-
-	frame.pack();
-	frame.setResizable(false);
-	frame.setVisible(true);
-
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	//creating buffering strategy
-	createBufferStrategy(2);
-	buffer = getBufferStrategy();
-
-	//handle input init. Sadly, we need to you this out of our canvas
-	setKeyListener(inp);
+		width = 1280;
+		height = 934;
+		frame = new JFrame("OOTanks");
+		ui = new GUI();
+		//get content of the frame, determine size
+		JPanel panel = (JPanel) frame.getContentPane();
+		panel.setPreferredSize(new Dimension(width,height));
+		panel.setLayout(null);
+	
+		//set up canvas and boundaries, add panel to 'this' canvas
+		setBounds(0,0,width,height);
+		panel.add(this);
+	
+		//we will paint manually, so
+		setIgnoreRepaint(true);
+		frame.setIgnoreRepaint(true);
+	
+		frame.pack();
+		frame.setResizable(false);
+		frame.setVisible(true);
+	
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+		//creating buffering strategy
+		createBufferStrategy(2);
+		buffer = getBufferStrategy();
+	
+		//handle input init. Sadly, we need to you this out of our canvas
+		setKeyListener(inp);
     }
 
     //function to draw tank at (x,y) and rotate it by an angle in degrees
@@ -72,7 +74,7 @@ public class Renderer extends Canvas{
 	  	int h = 30;
 		g2D.translate(x,y);
 	  	g2D.rotate(angle);
-	
+	  	
 	 	g2D.setColor(Color.darkGray);
 	  	g2D.drawRect(-w/2, -h/2, w, h);
 	  	g2D.fillRect(-w/2, -h/2, w, h);
@@ -104,8 +106,9 @@ public class Renderer extends Canvas{
     /**
      * Initialises the renderer, loads resources.
      */
-    public void init(){
+    public void init(ArrayList<HumanTank> tanks){
 	//load resources here
+    	ui.init(tanks);
     	tank1 = new Sprite("resources/tank1scaled.png");
     	tank2 = new Sprite("resources/tank2scaled.png");
     	background = new Sprite("resources/Terrain1scaled.png");
@@ -122,36 +125,35 @@ public class Renderer extends Canvas{
     		drawShell((int)x,(int)y,angle,id);
     }
     public void update(Land map){
-	//reset the graphics
-	g = null;
-	g2D = null;
-
-	// get ready to draw
-	g = buffer.getDrawGraphics();
-
-	//creating a java 2D graphic object
-	g2D = (Graphics2D) g;
-
-	//Sets background to terrain
-	background.draw(g2D, 0, 0, 0);
+		//reset the graphics
+		g = null;
+		g2D = null;
 	
-	//drawing will be done here
+		// get ready to draw
+		g = buffer.getDrawGraphics();
 	
-	for (GameEntity e : map.gameEntities){
-		draw(e.getX(),e.getY(),e.getWidth(),e.getHeight(),e.getAngle(), e.getId());
-	}
+		//creating a java 2D graphic object
+		g2D = (Graphics2D) g;
 	
-	tank1.draw(g2D, 50, 100, 0);
-	//end of drawing
-	
-	ui.update(g2D);
-	//syncs everything to smooth java frames
-	Toolkit.getDefaultToolkit().sync();
-	if(!buffer.contentsLost()){
-	    buffer.show();
-	} else {
-	    System.out.println("Data Lost in buffer");
-	}
+		//Sets background to terrain
+		background.draw(g2D, 0, 0,0,0, 0);
+		
+		//drawing will be done here
+		
+		for (GameEntity e : map.gameEntities){
+			draw(e.getX(),e.getY(),e.getWidth(),e.getHeight(),e.getAngle(), e.getId());
+		}
+		
+		//end of drawing
+		
+		ui.update(g2D);
+		//syncs everything to smooth java frames
+		Toolkit.getDefaultToolkit().sync();
+		if(!buffer.contentsLost()){
+		    buffer.show();
+		} else {
+		    System.out.println("Data Lost in buffer");
+		}
     }
     /**
      * Releases used resources

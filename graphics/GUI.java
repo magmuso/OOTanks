@@ -2,25 +2,24 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+
+import core.entities.top.HumanTank;
 
 
 public class GUI{
 
-
-	int p1hull = 100;
+	ArrayList<HumanTank> tanks = new ArrayList<HumanTank>();
 	
-	public GUI(){
+	public GUI(){ }
+	public void init(ArrayList<HumanTank> in_tanks){
+		tanks = in_tanks;
 	}
-	
 	public void update(Graphics2D g2D){
 		//hull from 0 to 100
-		if (p1hull > 0){
-			p1hull--;
-		}
-		int p2hull = 100;
 		int weapon = 0;
-		drawHull1(p1hull, g2D);
-		drawHull2(p2hull, g2D);
+		drawHull1(tanks.get(0).getHull(), g2D);
+		drawHull2(tanks.get(1).getHull(), g2D);
 		drawWeapon(weapon, g2D);
 	}
 	

@@ -29,4 +29,10 @@ public abstract class Tank extends GameEntity{
 		hull -= dmg;
 		System.out.println("Took " + dmg + " damage ");
 	}
+	public int getHull() {
+		return hull;
+	}
+	public int getMaxHull() {
+		return maxHull;
+	}
 };

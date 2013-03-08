@@ -1,5 +1,7 @@
 package core.engine;
 
+import java.util.ArrayList;
+
 import core.entities.top.*;
 
 public class Game{
@@ -7,6 +9,9 @@ public class Game{
 	public Land map;
 	public Input inp;
 	public Collider coll;
+	
+	public ArrayList<HumanTank> players = new ArrayList<HumanTank>();
+			
 	public Game(){
 		map = new Land(800,600);
 		inp = new Input();
@@ -16,8 +21,11 @@ public class Game{
 	 * Initialises the game logic
 	 */
 	public void init(){
-		map.gameEntities.add(new HumanTank(map, inp,400,100, 0, 0, new ShellCannon(), 0, (byte)0));
-		map.gameEntities.add(new HumanTank(map, inp,100,100,0,0,new ShellCannon(),0,(byte)1));
+		players.add(new HumanTank(map, inp,400,100, 0, 0, new ShellCannon(), 0, (byte)0));
+		players.add(new HumanTank(map, inp,100,100,0,0,new ShellCannon(),0,(byte)1));
+		for (HumanTank tank : players){
+			map.gameEntities.add(tank);
+		}
 	}
 	/**
 	 * Updates the game logic
