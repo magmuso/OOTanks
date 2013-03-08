@@ -18,8 +18,8 @@ public class GUI{
 	public void update(Graphics2D g2D){
 		//hull from 0 to 100
 		int weapon = 0;
-		drawHull1(tanks.get(0).getHull(), g2D);
-		drawHull2(tanks.get(1).getHull(), g2D);
+		drawHull(tanks.get(0).getHull(), tanks.get(1).getMaxHull(), g2D, 1);
+		drawHull(tanks.get(1).getHull(), tanks.get(1).getMaxHull(), g2D, 2);
 		drawWeapon(weapon, g2D);
 	}
 	
