@@ -9,84 +9,58 @@ public class Collider{
 	public void update(){
 		for (int i = 0; i < map.gameEntities.size()-1; i++){
 			for(int j = i+1 ; j< map.gameEntities.size();j++){
-				if (collides(map.gameEntities.get(i),map.gameEntities.get(j))){
-					System.out.println("COLLISION" + System.currentTimeMillis());
+				GameEntity ent1 = map.gameEntities.get(i);
+				GameEntity ent2 = map.gameEntities.get(j);
+				if (collides(ent1,ent2)){
+					ent1.onCollision(ent2);
+					ent2.onCollision(ent1);
 				}
 			}
 		}
 	}
 	public boolean collides(GameEntity rec1, GameEntity rec2){
-		//We get relevant corners with 0, 0 as origin
-		Vector2D tl1 = new Vector2D(-rec1.getWidth()/2, -rec1.getHeight()/2);
-		Vector2D tr1 = new Vector2D(tl1.x + rec1.getWidth(), tl1.y);
-		Vector2D br1 = new Vector2D(tl1.x + rec1.getWidth(), tl1.y + rec1.getHeight());
-
-		Vector2D tl2 = new Vector2D(-rec2.getWidth()/2, -rec2.getHeight()/2);
-		Vector2D tr2 = new Vector2D(tl2.x + rec2.getWidth(), tl2.y);
-		Vector2D bl2 = new Vector2D(tl2.x, tl2.y + rec2.getHeight());
+		Vector2D corners[][] = new Vector2D[2][4];
+		corners[0][0] = new Vector2D(-rec1.getWidth()/2, -rec1.getHeight()/2);
+		corners[0][1] = new Vector2D(corners[0][0].x + rec1.getWidth(), corners[0][0].y);
+		corners[0][2]= new Vector2D(corners[0][0].x + rec1.getWidth(), corners[0][0].y + rec1.getHeight());
+		corners[0][3]= new Vector2D(corners[0][0].x, corners[0][0].y + rec1.getHeight());
 		
-		//we rotate the corners and add the coordinates
-		tl1 = Vector2D.add(Vector2D.rotate(tl1, rec1.getAngle()),new Vector2D(rec1.getX(),rec1.getY()));
-		tr1 = Vector2D.add(Vector2D.rotate(tr1, rec1.getAngle()),new Vector2D(rec1.getX(),rec1.getY()));
-		br1 = Vector2D.add(Vector2D.rotate(br1, rec1.getAngle()),new Vector2D(rec1.getX(),rec1.getY()));
+		corners[1][0] = new Vector2D(-rec2.getWidth()/2, -rec2.getHeight()/2);
+		corners[1][1] = new Vector2D(corners[1][0].x + rec2.getWidth(), corners[1][0].y);
+		corners[1][2]= new Vector2D(corners[1][0].x + rec2.getWidth(), corners[1][0].y + rec2.getHeight());
+		corners[1][3]= new Vector2D(corners[1][0].x, corners[1][0].y + rec2.getHeight());
 		
-		tl2 = Vector2D.add(Vector2D.rotate(tl2, rec2.getAngle()),new Vector2D(rec2.getX(),rec2.getY()));
-		tr2 = Vector2D.add(Vector2D.rotate(tr2, rec2.getAngle()),new Vector2D(rec2.getX(),rec2.getY()));
-		bl2 = Vector2D.add(Vector2D.rotate(bl2, rec2.getAngle()),new Vector2D(rec2.getX(),rec2.getY()));
+		Vector2D displacement = Vector2D.sub(new Vector2D(rec2.getX(),rec2.getY()),new Vector2D(rec1.getX(), rec1.getY()));
+		double angleDiff = rec2.getAngle()-rec1.getAngle();
 		
-		//calculate the axis
-		Vector2D axis1 = Vector2D.sub(tr1, tl1);
-		Vector2D axis2 = Vector2D.sub(tr1, br1);
-		Vector2D axis3 = Vector2D.sub(tl2, bl2);
-		Vector2D axis4 = Vector2D.sub(tl2, tr2);
-		
-		//proj on axis1
-		double max11 = Vector2D.dot(Vector2D.proj(tr1, axis1), axis1);
-		double min11 = Vector2D.dot(Vector2D.proj(tl1, axis1), axis1);
-		
-		double max12 = Vector2D.dot(Vector2D.proj(tr2, axis1), axis1);
-		double min12 = Vector2D.dot(Vector2D.proj(tl2, axis1), axis1);
-		
-		if (max11 < min12 || min11 > max12) {
-			//System.out.println("Axis1");
-			return false;
+		for(int i = 0; i < corners[1].length; i++){
+			corners[1][i] = Vector2D.add(Vector2D.rotate(corners[1][i], angleDiff),displacement);
 		}
-		
-		//proj on axis2
-		max11 = Vector2D.dot(Vector2D.proj(tr1, axis2), axis2);
-		min11 = Vector2D.dot(Vector2D.proj(br1, axis2), axis2);
-		
-		max12 = Vector2D.dot(Vector2D.proj(tl2, axis2), axis2);
-		min12 = Vector2D.dot(Vector2D.proj(bl2, axis2), axis2);
-		
-		if (max11 < min12 || min11 > max12){
-			//System.out.println("Axis2");
-			return false;
+		Vector2D axes[] = new Vector2D[4];
+		axes[0] = new Vector2D(1,0);
+		axes[1] = new Vector2D(0,1);
+		axes[2] = Vector2D.sub(corners[1][1], corners[1][0]);
+		axes[3] = Vector2D.sub(corners[1][1], corners[1][2]);
+		double proj, min0, max0, min1, max1;
+		for(int axis = 0; axis < 4; axis++){
+			min0 = Vector2D.dot(Vector2D.proj(corners[0][0], axes[axis]), axes[axis]);
+			max0 = Vector2D.dot(Vector2D.proj(corners[0][0], axes[axis]), axes[axis]);
+			for(int i = 1; i < 4; i++){
+				proj = Vector2D.dot(Vector2D.proj(corners[0][i], axes[axis]), axes[axis]);
+				if (proj < min0) min0 = proj;
+				else if (proj > max0) max0 = proj;
+			}
+			min1 = Vector2D.dot(Vector2D.proj(corners[1][0], axes[axis]), axes[axis]);
+			max1 = Vector2D.dot(Vector2D.proj(corners[1][0], axes[axis]), axes[axis]);
+			for(int i = 1; i < 4; i++){
+				proj = Vector2D.dot(Vector2D.proj(corners[1][i], axes[axis]), axes[axis]);
+				if (proj < min1) min1 = proj;
+				else if (proj > max1) max1 = proj;
+			}
+			if (max0 < min1 || max1  < min0){
+				return false;
+			}
 		}
-		
-		max11 = Vector2D.dot(Vector2D.proj(tr1, axis3), axis3);
-		min11 = Vector2D.dot(Vector2D.proj(tl1, axis3), axis3);
-		
-		max12 = Vector2D.dot(Vector2D.proj(tr2, axis3), axis3);
-		min12 = Vector2D.dot(Vector2D.proj(tl2, axis3), axis3);
-		
-		if (max11 < min12 || min11 > max12){
-			//System.out.println("Axis3");
-			return false;
-		}
-
-		max11 = Vector2D.dot(Vector2D.proj(tr1, axis4), axis4);
-		min11 = Vector2D.dot(Vector2D.proj(br1, axis4), axis4);
-		
-		max12 = Vector2D.dot(Vector2D.proj(tl2, axis4), axis4);
-		min12 = Vector2D.dot(Vector2D.proj(bl2, axis4), axis4);
-		
-		if (max11 < min12 || min11 > max12){
-			//System.out.println("Axis4");
-			return false;
-		}
-		//double max11 = Vector2D.dot();
-		//check axis 2 with 3 & 4;
 		return true;
 	}
 };

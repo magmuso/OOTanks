@@ -16,7 +16,7 @@ public class Game{
 	 * Initialises the game logic
 	 */
 	public void init(){
-		map.gameEntities.add(new HumanTank(map, inp,300,300, 0, 0, new ShellCannon(), 0, (byte)0));
+		map.gameEntities.add(new HumanTank(map, inp,400,100, 0, 0, new ShellCannon(), 0, (byte)0));
 		map.gameEntities.add(new HumanTank(map, inp,100,100,0,0,new ShellCannon(),0,(byte)1));
 	}
 	/**
@@ -25,7 +25,6 @@ public class Game{
 	 * @param delta delta time
 	 */
 	public void update(double delta){
-		coll.update();
 		for(int i = 0; i < map.gameEntities.size(); i++){
 			map.gameEntities.get(i).update(delta);
 		}
@@ -34,6 +33,7 @@ public class Game{
 				map.gameEntities.remove(i);
 			}
 		}
+		coll.update();
 	}
 	/**
 	 * releases the game logic

@@ -21,7 +21,7 @@ public abstract class Tank extends GameEntity{
 		wep.fire(map, x,y,angle);
 	}
 	@Override
-	public void onCollision(){
-
+	public void onCollision(GameEntity ent){
+		
 	}
 };

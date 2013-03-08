@@ -101,9 +101,9 @@ public class Renderer extends Canvas{
      */
     public void init(){
 	//load resources here
-    	tank1 = new Sprite("C:\\Users\\manasb\\Desktop\\Java workspace\\OOTanks\\tank1scaled.png");
-    	tank2 = new Sprite("C:\\Users\\manasb\\Desktop\\Java workspace\\OOTanks\\tank2scaled.png");
-    	background = new Sprite("C:\\Users\\manasb\\Desktop\\Java workspace\\OOTanks\\Terrain1scaled.png");
+    	tank1 = new Sprite("resources/tank1scaled.png");
+    	tank2 = new Sprite("resources/tank2scaled.png");
+    	background = new Sprite("resources/Terrain1scaled.png");
     }
     
     /**
@@ -139,7 +139,7 @@ public class Renderer extends Canvas{
 	tank1.draw(g2D, 50, 100, 0);
 	//end of drawing
 	
-	ui.update();
+	ui.update(g2D);
 	//syncs everything to smooth java frames
 	Toolkit.getDefaultToolkit().sync();
 	if(!buffer.contentsLost()){

@@ -1,5 +1,6 @@
 package core.entities.top;
 
+import core.entities.GameEntity;
 import core.entities.Projectile;
 import core.engine.Land;
 
@@ -15,5 +16,8 @@ public class Shell extends Projectile {
 	public void update(double delta){
 		time = dTime(delta);
 		fly();
+	}
+	@Override
+	public void onCollision(GameEntity ent) {
 	}
 }

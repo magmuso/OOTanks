@@ -121,5 +121,5 @@ public abstract class GameEntity extends Entity implements Physics{
 	 * Abstract functions
 	 * ******************
 	 */
-	abstract void onCollision();
+	public abstract void onCollision(GameEntity ent);
 };
