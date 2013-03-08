@@ -7,7 +7,7 @@ public abstract class Tank extends GameEntity{
 	protected int hull;
 	protected int maxHull;
 	public Tank(Land map, double x, double y, double angle, int hull, Weapon wep, int weight){
-		super(map, x, y, 60, 30, weight);
+		super(map, x, y, 103, 60, weight);
 		this.wep = wep;
 		this.angle = angle;
 		this.hull = hull;

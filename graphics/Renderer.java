@@ -69,23 +69,8 @@ public class Renderer extends Canvas{
      * @param y Y centre coordinate of the tank
      * @param angle
      */
-    public void drawTank(int x,int y,double angle, int id){
-	  	int w = 60;
-	  	int h = 30;
-		g2D.translate(x,y);
-	  	g2D.rotate(angle);
-	  	
-	 	g2D.setColor(Color.darkGray);
-	  	g2D.drawRect(-w/2, -h/2, w, h);
-	  	g2D.fillRect(-w/2, -h/2, w, h);
-		g2D.setColor(Color.BLUE);
-		g2D.fillArc(-20,-10,20,20,0,360);
-	  	g2D.setColor(Color.RED);
-	  	g2D.drawRect(-w/2+30, -h/2+12, 21, 6);
-	  	g2D.fillRect(-w/2+30, -h/2+12, 21, 6);
-		g2D.rotate(-angle);
-		g2D.translate(-x,-y);
-
+    public void drawTank(int x,int y,double angle, int width, int height, int id){
+	  	tank1.draw(g2D, x, y, width, height, angle);
     }
     /**
      * Draws a projectile
@@ -93,7 +78,7 @@ public class Renderer extends Canvas{
      * @param y Y centre coordinate of the Projectile
      * @param angle Angle of the Projectile
      */
-    public void drawShell(int x, int y, double angle, int id){
+    public void drawShell(int x, int y, double angle, int width, int height, int id){
 		int d = 8;
 		g2D.translate(x,y);
 		g2D.rotate(angle);
@@ -120,9 +105,9 @@ public class Renderer extends Canvas{
      */
     public void draw(double x, double y, double width, double height, double angle, int id){
     	if (id  < 10)
-    		drawTank((int)x,(int)y,angle,id);
+    		drawTank((int)x,(int)y,angle,(int)width,(int)height,id);
     	else if (id < 20)
-    		drawShell((int)x,(int)y,angle,id);
+    		drawShell((int)x,(int)y,angle,(int)width,(int)height,id);
     }
     public void update(Land map){
 		//reset the graphics
