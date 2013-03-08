@@ -42,6 +42,7 @@ public abstract class GameEntity extends Entity implements Physics{
 	 * @param	num		turns by the 'num' amount
 	 */
 	protected void turn(double num){
+		System.out.println(v + " " + (SLIDE*weight));
 		if (v > SLIDE*weight || v < -SLIDE*weight){
 			double multiplier = 0.5;
 			if (v < 0) multiplier *= -1; 
