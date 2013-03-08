@@ -11,7 +11,7 @@ public class ShellCannon extends Weapon{
 	public void fire(Land map, double x, double y, double angle) {
 		if (System.currentTimeMillis()-lastLaunch > rate){
 			lastLaunch = System.currentTimeMillis();
-			map.gameEntities.add(new Shell(map,x,y,angle));
+			map.gameEntities.add(new Shell(map,x+20,y,angle));
 		}
 	}
 }

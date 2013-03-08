@@ -1,5 +1,10 @@
 package graphics;
 
+/*
+ * GameEntity IDs
+ * 0-9 tanks
+ * 10-19 projectiles
+ */
 import javax.swing.*;
 import java.awt.image.BufferStrategy;
 import java.awt.*;

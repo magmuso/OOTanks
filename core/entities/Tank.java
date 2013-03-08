@@ -5,11 +5,13 @@ import core.engine.Land;
 public abstract class Tank extends GameEntity{
 	protected Weapon wep;
 	protected int hull;
+	protected int maxHull;
 	public Tank(Land map, double x, double y, double angle, int hull, Weapon wep, int weight){
 		super(map, x, y, 60, 30, weight);
 		this.wep = wep;
 		this.angle = angle;
 		this.hull = hull;
+		this.maxHull = hull;
 		this.maxVelocity = 80.0 - weight;
 	}
 	/**
@@ -22,6 +24,9 @@ public abstract class Tank extends GameEntity{
 	}
 	@Override
 	public void onCollision(GameEntity ent){
-		
+	}
+	public void takeDamage(int dmg){
+		hull -= dmg;
+		System.out.println("Took " + dmg + " damage ");
 	}
 };

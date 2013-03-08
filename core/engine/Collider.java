@@ -7,32 +7,26 @@ public class Collider{
 		this.map = map;
 	}
 	public void update(){
-		for (int i = 0; i < map.gameEntities.size()-1; i++){
+		for (int i = 0; i < map.gameEntities.size(); i++){
+			GameEntity ent1 = map.gameEntities.get(i);
 			for(int j = i+1 ; j< map.gameEntities.size();j++){
-				GameEntity ent1 = map.gameEntities.get(i);
 				GameEntity ent2 = map.gameEntities.get(j);
 				if (collides(ent1,ent2)){
 					ent1.onCollision(ent2);
 					ent2.onCollision(ent1);
 				}
 			}
+			if(outOfBounds(ent1)){
+				ent1.onCollision(null);
+			}
 		}
 	}
-	public boolean collides(GameEntity rec1, GameEntity rec2){
-		Vector2D corners[][] = new Vector2D[2][4];
-		corners[0][0] = new Vector2D(-rec1.getWidth()/2, -rec1.getHeight()/2);
-		corners[0][1] = new Vector2D(corners[0][0].x + rec1.getWidth(), corners[0][0].y);
-		corners[0][2]= new Vector2D(corners[0][0].x + rec1.getWidth(), corners[0][0].y + rec1.getHeight());
-		corners[0][3]= new Vector2D(corners[0][0].x, corners[0][0].y + rec1.getHeight());
-		
-		corners[1][0] = new Vector2D(-rec2.getWidth()/2, -rec2.getHeight()/2);
-		corners[1][1] = new Vector2D(corners[1][0].x + rec2.getWidth(), corners[1][0].y);
-		corners[1][2]= new Vector2D(corners[1][0].x + rec2.getWidth(), corners[1][0].y + rec2.getHeight());
-		corners[1][3]= new Vector2D(corners[1][0].x, corners[1][0].y + rec2.getHeight());
-		
+	private boolean collides(GameEntity rec1, GameEntity rec2){
+		Vector2D[][] corners= new Vector2D[2][4];
+		corners[0] = getCorners(rec1);
+		corners[1] = getCorners(rec2);
 		Vector2D displacement = Vector2D.sub(new Vector2D(rec2.getX(),rec2.getY()),new Vector2D(rec1.getX(), rec1.getY()));
 		double angleDiff = rec2.getAngle()-rec1.getAngle();
-		
 		for(int i = 0; i < corners[1].length; i++){
 			corners[1][i] = Vector2D.add(Vector2D.rotate(corners[1][i], angleDiff),displacement);
 		}
@@ -62,5 +56,32 @@ public class Collider{
 			}
 		}
 		return true;
+	}
+	private boolean outOfBounds(GameEntity ent){
+		Vector2D[] corners = getCorners(ent);
+		Vector2D displ = new Vector2D(ent.getX(),ent.getY());
+		for(int i = 0; i < corners.length; i++){
+			corners[i] = Vector2D.add(Vector2D.rotate(corners[i], ent.getAngle()),displ);
+		}
+		double minX = corners[0].x;
+		double maxX = corners[0].x;
+		double minY = corners[0].y;
+		double maxY = corners[0].y;
+		for(int i = 1; i < 4; i++){
+			if (corners[i].x < minX) minX = corners[i].x;
+			else if (corners[i].x > maxX) maxX = corners[i].x;
+			if (corners[i].y < minY) minY = corners[i].y;
+			else if (corners[i].y > maxY) maxY = corners[i].y;
+		}
+		if (minX < 0 || maxX > map.width || minY < 0 || maxY > map.height) return true;
+		else return false;
+	}
+	private Vector2D[] getCorners(GameEntity rec){
+		Vector2D[] result = new Vector2D[4];
+		result[0] = new Vector2D(-rec.getWidth()/2, -rec.getHeight()/2);
+		result[1] = new Vector2D(result[0].x + rec.getWidth(), result[0].y);
+		result[2]= new Vector2D(result[0].x + rec.getWidth(), result[0].y + rec.getHeight());
+		result[3]= new Vector2D(result[0].x, result[0].y + rec.getHeight());
+		return result;
 	}
 };

@@ -2,6 +2,7 @@ package core.entities.top;
 
 import core.entities.GameEntity;
 import core.entities.Projectile;
+import core.entities.Tank;
 import core.engine.Land;
 
 public class Shell extends Projectile {
@@ -19,5 +20,11 @@ public class Shell extends Projectile {
 	}
 	@Override
 	public void onCollision(GameEntity ent) {
+		active = false;
+		if (ent != null){
+			if (ent.getId() < 10){
+				((Tank)ent).takeDamage(damage);
+			}
+		}
 	}
 }
