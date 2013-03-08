@@ -14,35 +14,34 @@ public class GUI{
 	
 	public void update(Graphics2D g2D){
 		//hull from 0 to 100
-		if (p1hull > 0){
-			p1hull--;
-		}
 		int p2hull = 100;
 		int weapon = 0;
-		drawHull1(p1hull, g2D);
-		drawHull2(p2hull, g2D);
+		int maxHull = 100;
+		drawHull(p1hull, maxHull, g2D, 1);
+		drawHull(p2hull, maxHull, g2D, 2);
 		drawWeapon(weapon, g2D);
 	}
 	
-	public void drawHull1(int hull, Graphics2D g2D) {
+	public void drawHull(int hull, int maxHull, Graphics2D g2D, int id) {
+		float h = (float) hull;
+		System.out.println(h);
+		float m = (float) maxHull;
+		int c = 20;
+		if (id == 1)
+			c = 20;
+		else if (id == 2)
+			c = 700;
+		System.out.println(m);
 		g2D.setColor(Color.BLACK);
-		g2D.fillRect(20, 20, 100, 5);
-		if (hull >= 50)
-			g2D.setColor(new Color(250-(hull-50)*4, 200, 1));
+		g2D.fillRect(c, 20, 100, 5);
+		if (h < 0)
+			g2D.setColor(new Color(1.0f, 0.0f, 0.0f));
+		else if (h/m >= 0.5)
+			g2D.setColor(new Color((1.0f - ((h/m)*2-1.0f)), 1.0f, 0.0f));
 		else
-			g2D.setColor(new Color(250, (hull*4), 0));
+			g2D.setColor(new Color(1.0f, h/m*2, 0.0f));
 		g2D.drawString("HEALTH", 20, 15);
-		g2D.fillRect(20, 20, hull, 5);
-	}
-	public void drawHull2(int hull, Graphics2D g2D) {
-		g2D.setColor(Color.BLACK);
-		g2D.fillRect(680, 20, 100, 5);
-		if (hull >= 50)
-			g2D.setColor(new Color(250-(hull-50)*4, 200, 1));
-		else
-			g2D.setColor(new Color(250, (hull*4), 0));
-		g2D.drawString("HEALTH", 680, 15);
-		g2D.fillRect(680, 20, hull, 5);
+		g2D.fillRect(c, 20, (int) ((h/m)*100), 5);
 	}
 	public void drawWeapon(int weapon, Graphics2D g2D) {
 		g2D.setColor(Color.BLACK);
