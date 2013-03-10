@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 public class Input implements KeyListener{
-	public boolean[] buttons1 = new boolean[5];
+	public boolean[][] buttons = new boolean[2][5];
 	/*
 	0 = up
 	1 = down
@@ -30,19 +30,34 @@ public class Input implements KeyListener{
 	 */
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			buttons1[0] = true;
+			buttons[0][0] = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_S) {
-                	buttons1[1] = true;
+			buttons[0][1] = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_A) {
-			buttons1[2] = true;
+			buttons[0][2] = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D) {
-			buttons1[3] = true;
+			buttons[0][3] = true;
 		}
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
-			buttons1[4] = true;
+			buttons[0][4] = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			buttons[1][0] = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            buttons[1][1] = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			buttons[1][2] = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			buttons[1][3] = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_0) {
+			buttons[1][4] = true;
 		}
 	}
 
@@ -52,19 +67,34 @@ public class Input implements KeyListener{
 	 */
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			buttons1[0] = false;
+			buttons[0][0] = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_S) {
-			buttons1[1] = false;
+			buttons[0][1] = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_A) {
-			buttons1[2] = false;
+			buttons[0][2] = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D) {
-			buttons1[3] = false;
+			buttons[0][3] = false;
 		}
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
-			buttons1[4] = false;
+			buttons[0][4] = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			buttons[1][0] = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            buttons[1][1] = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			buttons[1][2] = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			buttons[1][3] = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_0) {
+			buttons[1][4] = false;
 		}
 	}
 

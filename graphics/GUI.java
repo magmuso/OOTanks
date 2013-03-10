@@ -25,14 +25,12 @@ public class GUI{
 	
 	public void drawHull(int hull, int maxHull, Graphics2D g2D, int id) {
 		float h = (float) hull;
-		System.out.println(h);
 		float m = (float) maxHull;
 		int c = 20;
 		if (id == 1)
 			c = 20;
 		else if (id == 2)
 			c = 700;
-		System.out.println(m);
 		g2D.setColor(Color.BLACK);
 		g2D.fillRect(c, 20, 100, 5);
 		if (h < 0)

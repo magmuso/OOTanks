@@ -7,12 +7,12 @@ public abstract class Tank extends GameEntity{
 	protected int hull;
 	protected int maxHull;
 	public Tank(Land map, double x, double y, double angle, int hull, Weapon wep, int weight){
-		super(map, x, y, 103, 60, weight);
+		super(map, x, y, 80, 60, weight);
 		this.wep = wep;
 		this.angle = angle;
 		this.hull = hull;
 		this.maxHull = hull;
-		this.maxVelocity = 80.0 - weight;
+		this.maxVelocity = 120.0 - weight;
 	}
 	/**
 	 * Fires a projecile(s) by adding instances to the map
@@ -20,10 +20,26 @@ public abstract class Tank extends GameEntity{
 	 */
 	//tank fire function
 	protected void fire() {
-		wep.fire(map, x,y,angle);
+		wep.fire(map, this);
 	}
 	@Override
 	public void onCollision(GameEntity ent){
+		cancelMove();
+		if (ent != null){
+			if (ent.getWeight() > 0){
+				if (weight * v > 200){
+					v = -v/2;
+				} else {
+					v = 0;
+				}
+			}
+		} else {
+			if (weight * v > 200){
+				v = -v/2;
+			} else {
+				v = 0;
+			}
+		}
 	}
 	public void takeDamage(int dmg){
 		hull -= dmg;

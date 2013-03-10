@@ -11,5 +11,5 @@ public abstract class Weapon{
 		this.rate = rate;
 		this.lastLaunch = 0;
 	}
-	public abstract void fire(Land map, double x, double y, double angle);
+	public abstract void fire(Land map, Tank tank);
 };

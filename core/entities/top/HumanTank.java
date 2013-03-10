@@ -24,12 +24,13 @@ public class HumanTank extends Tank{
 	 * @see Input
 	 */
 	private void handleInput(){
-		if(controller == 1){
-			if (inpHandler.buttons1[0]) accelerate(4.5);
-			if (inpHandler.buttons1[1]) accelerate(-4.5);
-			if (inpHandler.buttons1[2]) turn(-1);
-			if (inpHandler.buttons1[3]) turn(1);
-			if (inpHandler.buttons1[4]) fire();
+		if(controller > 0){
+			if (inpHandler.buttons[controller-1][0]) accelerate(4.5);
+			if (inpHandler.buttons[controller-1][1]) accelerate(-4.5);
+			if (inpHandler.buttons[controller-1][2]) setTurn(-1);
+			else if (inpHandler.buttons[controller-1][3]) setTurn(1);
+			else setTurn(0);
+			if (inpHandler.buttons[controller-1][4]) fire();
 		}
 	}
 	/**
@@ -41,6 +42,6 @@ public class HumanTank extends Tank{
 	public void update(double delta){
 		time = dTime(delta);
 		handleInput();
-		applyMovement(false);
+		applyMovement();
 	}
 }

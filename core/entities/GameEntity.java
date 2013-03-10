@@ -6,9 +6,10 @@ import core.engine.Land;
 public abstract class GameEntity extends Entity implements Physics{
 	protected double width;
 	protected double height;
-	
+
 	protected double angle;
 	protected double v;
+	protected double turn;
 	protected double maxVelocity;
 	
 	protected final int weight;
@@ -21,6 +22,8 @@ public abstract class GameEntity extends Entity implements Physics{
 		this.weight = weight;
 		this.width = width;
 		this.height = height;
+		turn = 0;
+		v = 0;
 		//EO default values
 	}
 	
@@ -36,24 +39,25 @@ public abstract class GameEntity extends Entity implements Physics{
 	protected void accelerate(double num){
 			v += num-num*weight*0.01;
 	}
-	
+	protected void setTurn(double num){
+		turn = num;
+	}
 	/**
 	 * If entity is not stationary, turns the entity
 	 * @param	num		turns by the 'num' amount
 	 */
-	protected void turn(double num){
-		System.out.println(v + " " + (SLIDE*weight));
+	protected void turn(){
 		if (v > SLIDE*weight || v < -SLIDE*weight){
 			double multiplier = 0.5;
 			if (v < 0) multiplier *= -1; 
-			angle += time*num*multiplier;
+			angle += time*turn*multiplier;
 		}
 	}
 	/**
 	 *  Moves the object
 	 */
-	protected void applyMovement(boolean light){
-		if(!light){
+	protected void applyMovement(){
+		if(weight > 0){
 			applyFriction();
 		}
 		normaliseV();
@@ -64,9 +68,22 @@ public abstract class GameEntity extends Entity implements Physics{
 	 * Private functions
 	 * *****************
 	 */
-	private void move(){
+	protected void move(){
+		turn();
 		x += Math.cos(angle)*v*time;
 		y += Math.sin(angle)*v*time;
+	}
+	public void cancelMove(){
+		cancelTurn();
+		x -= Math.cos(angle)*v*time;
+		y -= Math.sin(angle)*v*time;
+	}
+	private void cancelTurn(){
+		if (v > SLIDE*weight || v < -SLIDE*weight){
+			double multiplier = 0.5;
+			if (v < 0) multiplier *= -1; 
+			angle -= time*turn*multiplier;
+		}
 	}
 	/**
 	 * Applies friction to the speed of the GameEntity
@@ -113,6 +130,9 @@ public abstract class GameEntity extends Entity implements Physics{
 	}
 	public double getHeight(){
 		return height;
+	}
+	public int getWeight(){
+		return weight;
 	}
 	public double getMaxVelocity(){
 		return maxVelocity;

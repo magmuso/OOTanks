@@ -13,7 +13,7 @@ public class Game{
 	public ArrayList<HumanTank> players = new ArrayList<HumanTank>();
 			
 	public Game(){
-		map = new Land(800,600);
+		map = new Land(1248,702);
 		inp = new Input();
 		coll = new Collider(map);
 	}
@@ -21,8 +21,8 @@ public class Game{
 	 * Initialises the game logic
 	 */
 	public void init(){
-		players.add(new HumanTank(map, inp,400,100, 0, 0, new ShellCannon(), 10, (byte)0));
-		players.add(new HumanTank(map, inp,100,100,0,0,new ShellCannon(), 10,(byte)1));
+		players.add(new HumanTank(map, inp,400,100, 0, 100, new ShellCannon(), 10, (byte)2));
+		players.add(new HumanTank(map, inp,100,100,0,100,new ShellCannon(), 10,(byte)1));
 		for (HumanTank tank : players){
 			map.gameEntities.add(tank);
 		}

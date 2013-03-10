@@ -31,8 +31,8 @@ public class Renderer extends Canvas{
     public final int height;
     //constructor
     public Renderer(Input inp){
-		width = 1280;
-		height = 934;
+		width = 1248;
+		height = 702;
 		frame = new JFrame("OOTanks");
 		ui = new GUI();
 		//get content of the frame, determine size

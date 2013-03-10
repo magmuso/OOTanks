@@ -14,10 +14,12 @@ public class Collider{
 				if (collides(ent1,ent2)){
 					ent1.onCollision(ent2);
 					ent2.onCollision(ent1);
+					System.out.println("Collision" + System.currentTimeMillis());
 				}
 			}
 			if(outOfBounds(ent1)){
 				ent1.onCollision(null);
+				System.out.println("Bounds" + System.currentTimeMillis());
 			}
 		}
 	}
@@ -26,9 +28,8 @@ public class Collider{
 		corners[0] = getCorners(rec1);
 		corners[1] = getCorners(rec2);
 		Vector2D displacement = Vector2D.sub(new Vector2D(rec2.getX(),rec2.getY()),new Vector2D(rec1.getX(), rec1.getY()));
-		double angleDiff = rec2.getAngle()-rec1.getAngle();
 		for(int i = 0; i < corners[1].length; i++){
-			corners[1][i] = Vector2D.add(Vector2D.rotate(corners[1][i], angleDiff),displacement);
+			corners[1][i] = Vector2D.rotate(Vector2D.add(Vector2D.rotate(corners[1][i],rec2.getAngle()),displacement),-rec1.getAngle());
 		}
 		Vector2D axes[] = new Vector2D[4];
 		axes[0] = new Vector2D(1,0);

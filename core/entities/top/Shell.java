@@ -10,21 +10,12 @@ public class Shell extends Projectile {
 		//width, height, damage, maxSpeed
 		super(4,2,20,200,500);
 	}
-	public Shell(Land map, double x, double y, double angle){
-		super(new Shell(), map, x,y,angle);
+	public Shell(Land map, Tank tank){
+		super(new Shell(), map, tank);
 		setId(11);
 	}
 	public void update(double delta){
 		time = dTime(delta);
 		fly();
-	}
-	@Override
-	public void onCollision(GameEntity ent) {
-		active = false;
-		if (ent != null){
-			if (ent.getId() < 10){
-				((Tank)ent).takeDamage(damage);
-			}
-		}
 	}
 }
