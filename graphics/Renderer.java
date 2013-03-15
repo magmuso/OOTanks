@@ -32,7 +32,7 @@ public class Renderer extends Canvas{
     //constructor
     public Renderer(Input inp){
 		width = 1248;
-		height = 702;
+		height = 783;
 		frame = new JFrame("OOTanks");
 		ui = new GUI();
 		//get content of the frame, determine size
@@ -94,9 +94,9 @@ public class Renderer extends Canvas{
     public void init(ArrayList<HumanTank> tanks){
 	//load resources here
     	ui.init(tanks);
-    	tank1 = new Sprite("resources/tank1scaled.png");
-    	tank2 = new Sprite("resources/tank2scaled.png");
-    	background = new Sprite("resources/Terrain1scaled.png");
+    	tank1 = new Sprite("C:\\Users\\manasb\\Desktop\\JavaWorkspace\\OOTanks\\OOTanks\\resources\\tank1.png");
+    	tank2 = new Sprite("C:\\Users\\manasb\\Desktop\\JavaWorkspace\\OOTanks\\OOTanks\\resources\\tank2.png");
+    	background = new Sprite("C:\\Users\\manasb\\Desktop\\JavaWorkspace\\OOTanks\\OOTanks\\resources\\terrain2.png");
     }
     
     /**
