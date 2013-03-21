@@ -44,4 +44,7 @@ public class HumanTank extends Tank{
 		handleInput();
 		applyMovement();
 	}
+	public int getPlayer() {
+		return (int) controller;
+	}
 }
