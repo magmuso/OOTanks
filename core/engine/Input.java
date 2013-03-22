@@ -56,7 +56,7 @@ public class Input implements KeyListener{
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			buttons[1][3] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_0) {
+		if (e.getKeyCode() == KeyEvent.VK_SLASH) {
 			buttons[1][4] = true;
 		}
 	}
@@ -93,7 +93,7 @@ public class Input implements KeyListener{
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			buttons[1][3] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_0) {
+		if (e.getKeyCode() == KeyEvent.VK_SLASH) {
 			buttons[1][4] = false;
 		}
 	}

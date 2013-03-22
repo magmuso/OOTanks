@@ -17,8 +17,10 @@ import core.entities.top.HumanTank;
 
 @SuppressWarnings("serial")
 public class Renderer extends Canvas{
-	private Sprite tank1;
-	private Sprite tank2;
+	private ArrayList<Sprite> tanks;
+	private ArrayList<Sprite> destTanks;
+	private Sprite props[];
+	ArrayList<HumanTank> humanTanks;
 	private Sprite background;
     private JFrame frame;
     private BufferStrategy buffer;
@@ -33,6 +35,9 @@ public class Renderer extends Canvas{
     public Renderer(Input inp){
 		width = 1248;
 		height = 783;
+		tanks = new ArrayList<Sprite>();
+		destTanks = new ArrayList<Sprite>();
+		props = new Sprite[20];
 		frame = new JFrame("OOTanks");
 		ui = new GUI();
 		//get content of the frame, determine size
@@ -69,8 +74,12 @@ public class Renderer extends Canvas{
      * @param y Y centre coordinate of the tank
      * @param angle
      */
-    public void drawTank(int x,int y,double angle, int width, int height, int id){
-	  	tank1.draw(g2D, x, y, width, height, angle);
+    public void drawTank(int x,int y,double angle, int width, int height, int id, boolean destroyed){
+    	if (!destroyed){
+    		tanks.get(id-1).draw(g2D, x, y, width, height, angle);
+    	} else {
+    		destTanks.get(id-1).draw(g2D, x, y, width, height, angle);
+    	}
     }
     /**
      * Draws a projectile
@@ -94,9 +103,14 @@ public class Renderer extends Canvas{
     public void init(ArrayList<HumanTank> tanks){
 	//load resources here
     	ui.init(tanks);
-    	tank1 = new Sprite("C:\\Users\\manasb\\Desktop\\JavaWorkspace\\OOTanks\\OOTanks\\resources\\tank1.png");
-    	tank2 = new Sprite("C:\\Users\\manasb\\Desktop\\JavaWorkspace\\OOTanks\\OOTanks\\resources\\tank2.png");
-    	background = new Sprite("C:\\Users\\manasb\\Desktop\\JavaWorkspace\\OOTanks\\OOTanks\\resources\\terrain2.png");
+    	humanTanks = tanks;
+    	props[0] = new Sprite("/resources/build2.png");
+    	this.tanks.add(new Sprite("/resources/tank1.png"));
+    	this.tanks.add(new Sprite("/resources/tank2.png"));
+    	this.destTanks.add(new Sprite("/resources/ExplodedTank1.png"));
+    	this.destTanks.add(new Sprite("/resources/ExplodedTank2.png"));
+    	background = new Sprite("/resources/terrainFINAL.png");
+    	
     }
     
     /**
@@ -105,11 +119,21 @@ public class Renderer extends Canvas{
      */
     public void draw(double x, double y, double width, double height, double angle, int id){
     	if (id  < 10)
-    		drawTank((int)x,(int)y,angle,(int)width,(int)height,id);
+    		drawTank((int)x,(int)y,angle,(int)width,(int)height,id,humanTanks.get(id-1).isDestroyed());
     	else if (id < 20)
     		drawShell((int)x,(int)y,angle,(int)width,(int)height,id);
+    	else if (id < 40)
+    		drawProp((int)x,(int)y,angle,(int)width,(int)height,id);
     }
-    public void update(Land map){
+    private void drawProp(int x, int y, double angle, int width, int height, int id) {
+		switch(id){
+		case 20:
+			props[0].draw(g2D, x-3, y - 40, width, height,angle);
+			break;
+		}
+	}
+
+	public void update(Land map){
 		//reset the graphics
 		g = null;
 		g2D = null;

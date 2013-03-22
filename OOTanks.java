@@ -23,19 +23,26 @@ public class OOTanks {
 
 		// init of run_game
 		boolean runGame = true;
+		boolean notQuit = true;
 		long frameTime = System.nanoTime();
-
-		while(runGame){
-			//let's count the time taken to run a loop
-			long updateLength = frameTime - System.nanoTime();
-			frameTime = System.nanoTime();
-			double delta = updateLength / (double)TARGET_TIME / ADJUSTMENT;
-
-			strat.update(delta);
-			render.update(strat.map);
-
-			//sleep for some milliseconds to limit the frame rate
-			try{Thread.sleep((frameTime-System.nanoTime()+TARGET_TIME) / 1000000 );} catch (Exception e){}
+		while (notQuit){
+			//run init screen
+			
+			//
+			while(runGame){
+				//let's count the time taken to run a loop
+				long updateLength = frameTime - System.nanoTime();
+				frameTime = System.nanoTime();
+				double delta = updateLength / (double)TARGET_TIME / ADJUSTMENT;
+				strat.update(delta);
+				render.update(strat.map);
+	
+				//sleep for some milliseconds to limit the frame rate
+				try{Thread.sleep((frameTime-System.nanoTime()+TARGET_TIME) / 1000000 );} catch (Exception e){}
+			}
+			//run gameover screen
+			
+			//
 		}
 	}
 	private void mainRelease(){

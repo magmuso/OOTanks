@@ -47,4 +47,7 @@ public class HumanTank extends Tank{
 	public int getPlayer() {
 		return (int) controller;
 	}
+	public int getId(){
+		return getPlayer();
+	}
 }

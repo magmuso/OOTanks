@@ -14,12 +14,10 @@ public class Collider{
 				if (collides(ent1,ent2)){
 					ent1.onCollision(ent2);
 					ent2.onCollision(ent1);
-					System.out.println("Collision" + System.currentTimeMillis());
 				}
 			}
 			if(outOfBounds(ent1)){
 				ent1.onCollision(null);
-				System.out.println("Bounds" + System.currentTimeMillis());
 			}
 		}
 	}

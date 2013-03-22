@@ -3,11 +3,12 @@ package core.entities;
 import core.engine.Land;
 
 public abstract class Tank extends GameEntity{
+	protected boolean destroyed = false;
 	protected Weapon wep;
 	protected int hull;
 	protected int maxHull;
 	public Tank(Land map, double x, double y, double angle, int hull, Weapon wep, int weight){
-		super(map, x, y, 80, 60, weight);
+		super(map, x, y, 77, 49, weight);
 		this.wep = wep;
 		this.angle = angle;
 		this.hull = hull;
@@ -43,10 +44,18 @@ public abstract class Tank extends GameEntity{
 	}
 	public void takeDamage(int dmg){
 		hull -= dmg;
-		System.out.println("Took " + dmg + " damage ");
+		if (hull <= 0){
+			destroy();
+		}
 	}
 	public int getHull() {
 		return hull;
+	}
+	public boolean isDestroyed(){
+		return destroyed;
+	}
+	private void destroy(){
+		destroyed = true;
 	}
 	public int getMaxHull() {
 		return maxHull;
