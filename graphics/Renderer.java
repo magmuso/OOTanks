@@ -19,6 +19,7 @@ import core.entities.top.HumanTank;
 public class Renderer extends Canvas{
 	private ArrayList<Sprite> tanks;
 	private ArrayList<Sprite> destTanks;
+	private Sprite screens[];
 	private Sprite props[];
 	ArrayList<HumanTank> humanTanks;
 	private Sprite background;
@@ -34,10 +35,11 @@ public class Renderer extends Canvas{
     //constructor
     public Renderer(Input inp){
 		width = 1248;
-		height = 783;
+		height = 722;
 		tanks = new ArrayList<Sprite>();
 		destTanks = new ArrayList<Sprite>();
 		props = new Sprite[20];
+		screens = new Sprite[8];
 		frame = new JFrame("OOTanks");
 		ui = new GUI();
 		//get content of the frame, determine size
@@ -109,8 +111,37 @@ public class Renderer extends Canvas{
     	this.tanks.add(new Sprite("/resources/tank2.png"));
     	this.destTanks.add(new Sprite("/resources/ExplodedTank1.png"));
     	this.destTanks.add(new Sprite("/resources/ExplodedTank2.png"));
-    	background = new Sprite("/resources/terrainFINAL.png");
+    	screens[0] = new Sprite("/resources/terrainFINAL.png");
+    	screens[1] = new Sprite("/resources/GameStart.png");
+    	screens[2] = new Sprite("/resources/GameOver.png");
     	
+    }
+    public void initScreen(){
+    	boolean showScreen = true;
+    	final long TARGET_TIME=1000000000/60;
+
+    	while(showScreen){
+    		g2D = null;
+    		
+    		// get ready to draw
+    		g = buffer.getDrawGraphics();
+    	
+    		//creating a java 2D graphic object
+    		g2D = (Graphics2D) g;
+    		long frameTime = System.nanoTime();    		
+    		screens[1].draw(g2D, 0, 0, 0, 0, 0);
+    		try{Thread.sleep((frameTime-System.nanoTime()+TARGET_TIME) / 1000000 );} catch (Exception e){}
+    		Toolkit.getDefaultToolkit().sync();
+    		if(!buffer.contentsLost()){
+    		    buffer.show();
+    		} else {
+    		    System.out.println("Data Lost in buffer");
+    		}
+    	}
+    	
+    }
+    public boolean endScreen(){
+    	return false;
     }
     
     /**
@@ -145,7 +176,7 @@ public class Renderer extends Canvas{
 		g2D = (Graphics2D) g;
 	
 		//Sets background to terrain
-		background.draw(g2D, 0, 0,0,0, 0);
+		screens[0].draw(g2D, 0, 0,0,0, 0);
 		
 		//drawing will be done here
 		

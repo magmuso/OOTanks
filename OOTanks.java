@@ -27,7 +27,7 @@ public class OOTanks {
 		long frameTime = System.nanoTime();
 		while (notQuit){
 			//run init screen
-			
+			render.initScreen();
 			//
 			while(runGame){
 				//let's count the time taken to run a loop
