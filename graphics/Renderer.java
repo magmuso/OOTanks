@@ -34,7 +34,7 @@ public class Renderer extends Canvas{
     //constructor
     public Renderer(Input inp){
 		width = 1248;
-		height = 783;
+		height = 722;
 		tanks = new ArrayList<Sprite>();
 		destTanks = new ArrayList<Sprite>();
 		props = new Sprite[20];
