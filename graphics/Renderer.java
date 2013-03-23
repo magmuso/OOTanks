@@ -22,7 +22,6 @@ public class Renderer extends Canvas{
 	private Sprite screens[];
 	private Sprite props[];
 	ArrayList<HumanTank> humanTanks;
-	private Sprite background;
     private JFrame frame;
     private BufferStrategy buffer;
     private Graphics g;

@@ -1,7 +1,6 @@
 package graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.net.URL;
 
 import javax.swing.ImageIcon;
 
@@ -11,9 +10,7 @@ public class Sprite{
 
 	//CONSTRUCTOR
 	public Sprite(String path){
-		URL url = this.getClass().getResource(path);
-		//System.out.println(url.getPath());
-		pic = new ImageIcon(url.getPath()).getImage();
+		pic = new ImageIcon(getClass().getResource(path)).getImage();
 	}
 	
 	public void draw(Graphics2D g, int x, int y, int width, int height, double angle){
