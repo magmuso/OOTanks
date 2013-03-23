@@ -12,7 +12,7 @@ public class Sprite{
 	//CONSTRUCTOR
 	public Sprite(String path){
 		URL url = this.getClass().getResource(path);
-		System.out.println(url.getPath());
+		//System.out.println(url.getPath());
 		pic = new ImageIcon(url.getPath()).getImage();
 	}
 	

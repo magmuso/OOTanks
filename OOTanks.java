@@ -27,14 +27,14 @@ public class OOTanks {
 		long frameTime = System.nanoTime();
 		while (notQuit){
 			//run init screen
-			render.initScreen();
+			render.initScreen(strat.inp);
 			//
 			while(runGame){
 				//let's count the time taken to run a loop
 				long updateLength = frameTime - System.nanoTime();
 				frameTime = System.nanoTime();
 				double delta = updateLength / (double)TARGET_TIME / ADJUSTMENT;
-				strat.update(delta);
+				runGame = strat.update(delta);
 				render.update(strat.map);
 	
 				//sleep for some milliseconds to limit the frame rate

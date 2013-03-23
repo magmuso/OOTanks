@@ -1,17 +1,17 @@
 package core.entities.top;
 
+import core.engine.Land;
 import core.entities.Projectile;
 import core.entities.Tank;
-import core.engine.Land;
 
-public class Shell extends Projectile {
-	public Shell(){
+public class Laser extends Projectile{
+	public Laser(){
 		//width, height, damage, maxSpeed
-		super(4,2,25,200,500);
+		super(40,2,1,400,500);
 	}
-	public Shell(Land map, Tank tank){
-		super(new Shell(), map, tank);
-		setId(11);
+	public Laser(Land map, Tank tank){
+		super(new Laser(), map, tank);
+		setId(12);
 	}
 	public void update(double delta){
 		time = dTime(delta);

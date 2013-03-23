@@ -93,9 +93,13 @@ public class Renderer extends Canvas{
 		int d = 8;
 		g2D.translate(x,y);
 		g2D.rotate(angle);
-		
-		g2D.setColor(Color.BLACK);
-		g2D.fillArc(-d/2, -d/2, d, d, 0, 360);	
+		if (id == 11){
+			g2D.setColor(Color.BLACK);
+			g2D.fillArc(-width/2, -height/2, d, d, 0, 360);	
+		} else if (id == 12){
+			g2D.setColor(Color.RED);
+			g2D.fillRect(-width/2, -height/2, width, height );
+		}
 		g2D.rotate(-angle);
 		g2D.translate(-x,-y);
     }
@@ -112,24 +116,39 @@ public class Renderer extends Canvas{
     	this.destTanks.add(new Sprite("/resources/ExplodedTank1.png"));
     	this.destTanks.add(new Sprite("/resources/ExplodedTank2.png"));
     	screens[0] = new Sprite("/resources/terrainFINAL.png");
-    	screens[1] = new Sprite("/resources/GameStart.png");
-    	screens[2] = new Sprite("/resources/GameOver.png");
+    	screens[1] = new Sprite("/resources/GameStartFINAL.png");
+    	screens[2] = new Sprite("/resources/SPACEtoSTART.png");
+    	screens[3] = new Sprite("/resources/GameOverFINAL.png");
+    	screens[4] = new Sprite("/resources/SPACEtoReplay.png");
     	
     }
-    public void initScreen(){
+    public void initScreen(Input input){
     	boolean showScreen = true;
     	final long TARGET_TIME=1000000000/60;
+    	int frame = 0;
+    	boolean blinker = false;
 
     	while(showScreen){
+    		if(frame == 32){
+    			frame = 0;
+    			if (blinker){
+    				blinker = false;
+    			} else {
+    				blinker = true;
+    			}
+    		}
     		g2D = null;
     		
     		// get ready to draw
     		g = buffer.getDrawGraphics();
-    	
+    		if(input.buttons[0][4]) showScreen = false;
     		//creating a java 2D graphic object
     		g2D = (Graphics2D) g;
     		long frameTime = System.nanoTime();    		
     		screens[1].draw(g2D, 0, 0, 0, 0, 0);
+    		if (blinker){
+    			screens[2].draw(g2D, 325, 410, 0, 0, 0);
+    		}
     		try{Thread.sleep((frameTime-System.nanoTime()+TARGET_TIME) / 1000000 );} catch (Exception e){}
     		Toolkit.getDefaultToolkit().sync();
     		if(!buffer.contentsLost()){
@@ -137,10 +156,45 @@ public class Renderer extends Canvas{
     		} else {
     		    System.out.println("Data Lost in buffer");
     		}
+    		frame++;
     	}
-    	
     }
-    public boolean endScreen(){
+    public boolean endScreen(Input input){
+    	boolean showScreen = true;
+    	final long TARGET_TIME=1000000000/60;
+    	int frame = 0;
+    	boolean blinker = false;
+
+    	while(showScreen){
+    		if(frame == 32){
+    			frame = 0;
+    			if (blinker){
+    				blinker = false;
+    			} else {
+    				blinker = true;
+    			}
+    		}
+    		g2D = null;
+    		
+    		// get ready to draw
+    		g = buffer.getDrawGraphics();
+    		if(input.buttons[0][4]) return true;
+    		//creating a java 2D graphic object
+    		g2D = (Graphics2D) g;
+    		long frameTime = System.nanoTime();    		
+    		screens[3].draw(g2D, 0, 0, 0, 0, 0);
+    		if (blinker){
+    			screens[4].draw(g2D, 325, 410, 0, 0, 0);
+    		}
+    		try{Thread.sleep((frameTime-System.nanoTime()+TARGET_TIME) / 1000000 );} catch (Exception e){}
+    		Toolkit.getDefaultToolkit().sync();
+    		if(!buffer.contentsLost()){
+    		    buffer.show();
+    		} else {
+    		    System.out.println("Data Lost in buffer");
+    		}
+    		frame++;
+    	}
     	return false;
     }
     

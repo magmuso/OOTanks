@@ -22,7 +22,7 @@ public class Game{
 	 */
 	public void init(){
 		players.add(new HumanTank(map, inp,100,100, Math.PI,100,new ShellCannon(), 10,(byte)1));
-		players.add(new HumanTank(map, inp,1100,650, 0, 100, new ShellCannon(), 10, (byte)2));
+		players.add(new HumanTank(map, inp,1100,650, 0, 100, new LaserCannon(), 10, (byte)2));
 		map.gameEntities.add(new Prop(map, 500, 300, 0));
 		for (HumanTank tank : players){
 			map.gameEntities.add(tank);
@@ -33,7 +33,7 @@ public class Game{
 	 * @param inp Input handler
 	 * @param delta delta time
 	 */
-	public void update(double delta){
+	public boolean update(double delta){
 		for(int i = 0; i < map.gameEntities.size(); i++){
 			map.gameEntities.get(i).update(delta);
 		}
@@ -43,6 +43,7 @@ public class Game{
 			}
 		}
 		coll.update();
+		return true;
 	}
 	/**
 	 * releases the game logic

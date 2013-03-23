@@ -14,7 +14,7 @@ public abstract class Projectile extends GameEntity{
 		this.distance = distance;
 	}
 	public Projectile(Projectile proj, Land map, Tank tank){
-		super(map, tank.getX()+tank.getWidth()/2*Math.cos(tank.getAngle()), tank.getY()+tank.getWidth()/2*Math.sin(tank.getAngle()), proj.width, proj.height, 0);
+		super(map, tank.getX()+(tank.getWidth()+proj.getWidth()/2)/2*Math.cos(tank.getAngle()), tank.getY()+(tank.getWidth()+proj.getWidth()/2)/2*Math.sin(tank.getAngle()), proj.width, proj.height, 0);
 		this.damage = proj.damage;
 		this.distance = proj.distance;
 		this.active = true;
@@ -34,7 +34,13 @@ public abstract class Projectile extends GameEntity{
 		}
 	}
 	public void onCollision(GameEntity ent){
-		if (ent != (GameEntity)tank) {
+		if (ent != null){
+			if (ent.getId() > 9 && ent.getId() < 20){
+				return;
+			} else if (ent != (GameEntity)tank) {
+				active = false;
+			}
+		} else {
 			active = false;
 		}
 		if (ent != null && !active){
