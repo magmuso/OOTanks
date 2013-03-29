@@ -16,8 +16,8 @@ public class GUI{
 	public void init(ArrayList<HumanTank> in_tanks) {
 		tanks = in_tanks;
 		weps = new Sprite[2];
-		weps[0] = new Sprite("/resources/ExplodedTank1.png");
-    	weps[1] = new Sprite("/resources/ExplodedTank2.png");
+		weps[0] = new Sprite("/resources/shellIcon.png");
+    	weps[1] = new Sprite("/resources/laserIcon.png");
 	}
 	public void update(Graphics2D g2D) {
 		//hull from 0 to 100
