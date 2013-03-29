@@ -109,7 +109,9 @@ public class Renderer extends Canvas{
 	//load resources here
     	ui.init(tanks);
     	humanTanks = tanks;
-    	props[0] = new Sprite("/resources/build2.png");
+    	props[1] = new Sprite("/resources/build1.png");
+    	props[2] = new Sprite("/resources/build2.png");
+    	props[3] = new Sprite("/resources/build3.png");
     	this.tanks.add(new Sprite("/resources/tank1.png"));
     	this.tanks.add(new Sprite("/resources/tank2.png"));
     	this.destTanks.add(new Sprite("/resources/ExplodedTank1.png"));
@@ -211,9 +213,16 @@ public class Renderer extends Canvas{
     }
     private void drawProp(int x, int y, double angle, int width, int height, int id) {
 		switch(id){
-		case 20:
-			props[0].draw(g2D, x-3, y - 40, width, height,angle);
+		case 21:
+			props[1].draw(g2D, x, y - 15, width, height,angle);
 			break;
+		case 22:
+			props[2].draw(g2D, x-18, y - 49, width, height,angle);
+			break;
+		case 23:
+			props[3].draw(g2D, x-3, y - 40, width, height,angle);
+			break;
+			
 		}
 	}
 

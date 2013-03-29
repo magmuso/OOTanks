@@ -8,10 +8,17 @@ public class Prop extends GameEntity{
 		super(map, x, y, 0, 0, 1);
 		setId(type + 20);
 		switch (type){
-		case 0:
-			width = 130;
-			height = 120;
+		case 1:
+			width = 157;
+			height = 143;
 			break;
+		case 2:
+			width = 107;
+			height = 110;
+			break;
+		case 3:
+			width = 52;
+			height = 83;
 		}
 	}
 
