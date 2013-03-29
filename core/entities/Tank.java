@@ -40,9 +40,9 @@ public abstract class Tank extends GameEntity{
 	}
 	@Override
 	public void onCollision(GameEntity ent){
-		cancelMove();
 		if (ent != null){
 			if (ent.getWeight() > 0){
+				cancelMove();
 				if (weight * v > 200){
 					v = -v/2;
 				} else {
@@ -50,6 +50,7 @@ public abstract class Tank extends GameEntity{
 				}
 			}
 		} else {
+			cancelMove();
 			if (weight * v > 200){
 				v = -v/2;
 			} else {
