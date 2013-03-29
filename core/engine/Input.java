@@ -47,33 +47,33 @@ public class Input implements KeyListener{
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
 			buttons[0][4] = true;
 		}
-		if (e.getKeyChar() == KeyEvent.VK_1) {
+		if (e.getKeyCode() == KeyEvent.VK_Q) {
 			buttons[0][5] = true;
 		}
-		if (e.getKeyChar() == KeyEvent.VK_2) {
+		if (e.getKeyCode() == KeyEvent.VK_E) {
 			buttons[0][6] = true;
 		}
 		
 		//p2
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyChar() == KeyEvent.VK_8) {
 			buttons[1][0] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if (e.getKeyChar() == KeyEvent.VK_5) {
             buttons[1][1] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (e.getKeyChar() == KeyEvent.VK_4) {
 			buttons[1][2] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyChar() == KeyEvent.VK_6) {
 			buttons[1][3] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_SLASH) {
+		if (e.getKeyChar() == KeyEvent.VK_0) {
 			buttons[1][4] = true;
 		}
-		if (e.getKeyChar() == KeyEvent.VK_3) {
+		if (e.getKeyChar() == KeyEvent.VK_7) {
 			buttons[1][5] = true;
 		}
-		if (e.getKeyChar() == KeyEvent.VK_4) {
+		if (e.getKeyChar() == KeyEvent.VK_9) {
 			buttons[1][6] = true;
 		}
 		
@@ -100,33 +100,33 @@ public class Input implements KeyListener{
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
 			buttons[0][4] = false;
 		}
-		if (e.getKeyChar() == KeyEvent.VK_1) {
+		if (e.getKeyCode() == KeyEvent.VK_Q) {
 			buttons[0][5] = false;
 		}
-		if (e.getKeyChar() == KeyEvent.VK_2) {
+		if (e.getKeyCode() == KeyEvent.VK_E) {
 			buttons[0][6] = false;
 		}
 		
 		//p2
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyChar() == KeyEvent.VK_8) {
 			buttons[1][0] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if (e.getKeyChar() == KeyEvent.VK_5) {
             buttons[1][1] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (e.getKeyChar() == KeyEvent.VK_4) {
 			buttons[1][2] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyChar() == KeyEvent.VK_6) {
 			buttons[1][3] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_SLASH) {
+		if (e.getKeyChar() == KeyEvent.VK_0) {
 			buttons[1][4] = false;
 		}
-		if (e.getKeyChar() == KeyEvent.VK_3) {
+		if (e.getKeyChar() == KeyEvent.VK_7) {
 			buttons[1][5] = false;
 		}
-		if (e.getKeyChar() == KeyEvent.VK_4) {
+		if (e.getKeyChar() == KeyEvent.VK_9) {
 			buttons[1][6] = false;
 		}
 	}
