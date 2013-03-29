@@ -2,6 +2,7 @@ package core.engine;
 
 import java.util.ArrayList;
 
+import core.entities.Entity;
 import core.entities.top.*;
 
 public class Game{
@@ -33,9 +34,15 @@ public class Game{
 	 * @param inp Input handler
 	 * @param delta delta time
 	 */
-	public boolean update(double delta){
+	public int update(double delta){
 		for(int i = 0; i < map.gameEntities.size(); i++){
-			map.gameEntities.get(i).update(delta);
+			Entity ent = map.gameEntities.get(i);
+			ent.update(delta);
+			if(players.get(0).getHull() <= 0){
+				return 2;
+			} else if (players.get(1).getHull()<=0){
+				return 1;
+			}
 		}
 		for(int i = map.gameEntities.size()-1;i > -1; i--){
 			if (!map.gameEntities.get(i).getActive()){
@@ -43,12 +50,14 @@ public class Game{
 			}
 		}
 		coll.update();
-		return true;
+		return 0;
 	}
 	/**
 	 * releases the game logic
 	 */
 	public void release(){
-		
+		players.clear();
+		map.gameEntities.clear();
+		init();
 	}
 };

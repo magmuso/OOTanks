@@ -7,7 +7,7 @@ import core.entities.Tank;
 public class Laser extends Projectile{
 	public Laser(){
 		//width, height, damage, maxSpeed
-		super(40,2,1,400,500);
+		super(60,2,1,600,800);
 	}
 	public Laser(Land map, Tank tank){
 		super(new Laser(), map, tank);

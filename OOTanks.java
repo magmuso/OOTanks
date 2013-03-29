@@ -25,6 +25,8 @@ public class OOTanks {
 		boolean runGame = true;
 		boolean notQuit = true;
 		long frameTime = System.nanoTime();
+		int winner = 0;
+		long wintime = 0;
 		while (notQuit){
 			//run init screen
 			render.initScreen(strat.inp);
@@ -34,7 +36,19 @@ public class OOTanks {
 				long updateLength = frameTime - System.nanoTime();
 				frameTime = System.nanoTime();
 				double delta = updateLength / (double)TARGET_TIME / ADJUSTMENT;
-				runGame = strat.update(delta);
+				if (winner == 0){
+					winner = strat.update(delta);
+					if (winner > 0){
+						wintime = System.currentTimeMillis();
+					}
+				} else {
+					if (wintime < System.currentTimeMillis() - 5000){
+						strat.release();
+						if (render.endScreen(winner, strat.inp)){
+							winner = 0;
+						}
+					}
+				}
 				render.update(strat.map);
 	
 				//sleep for some milliseconds to limit the frame rate

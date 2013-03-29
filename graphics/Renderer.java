@@ -34,7 +34,7 @@ public class Renderer extends Canvas{
     //constructor
     public Renderer(Input inp){
 		width = 1248;
-		height = 722;
+		height = 702;
 		tanks = new ArrayList<Sprite>();
 		destTanks = new ArrayList<Sprite>();
 		props = new Sprite[20];
@@ -158,7 +158,7 @@ public class Renderer extends Canvas{
     		frame++;
     	}
     }
-    public boolean endScreen(Input input){
+    public boolean endScreen(int winner, Input input){
     	boolean showScreen = true;
     	final long TARGET_TIME=1000000000/60;
     	int frame = 0;
@@ -183,7 +183,7 @@ public class Renderer extends Canvas{
     		long frameTime = System.nanoTime();    		
     		screens[3].draw(g2D, 0, 0, 0, 0, 0);
     		if (blinker){
-    			screens[4].draw(g2D, 325, 410, 0, 0, 0);
+    			screens[4].draw(g2D, 425, 510, 0, 0, 0);
     		}
     		try{Thread.sleep((frameTime-System.nanoTime()+TARGET_TIME) / 1000000 );} catch (Exception e){}
     		Toolkit.getDefaultToolkit().sync();

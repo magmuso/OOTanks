@@ -7,7 +7,7 @@ import core.engine.Land;
 public class Shell extends Projectile {
 	public Shell(){
 		//width, height, damage, maxSpeed
-		super(4,2,25,200,500);
+		super(4,2,34,200,500);
 	}
 	public Shell(Land map, Tank tank){
 		super(new Shell(), map, tank);
