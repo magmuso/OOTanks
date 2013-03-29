@@ -64,7 +64,6 @@ public class GUI{
 		if (id == 2) c = 1058;
 		g2D.setColor(Color.BLACK);
 		g2D.drawString("WEAPON", c, 20);
-		g2D.drawRoundRect(c, 25, 50, 50, 10, 10);
 		weps[weapon].draw(g2D, c, 25, 0, 0, 0);
 	}
 };
