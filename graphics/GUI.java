@@ -20,6 +20,7 @@ public class GUI{
     	weps[1] = new Sprite("/resources/iconLaser.png");
 	}
 	public void update(Graphics2D g2D) {
+
 		//hull from 0 to 100
 		for (HumanTank t : tanks) {
 			drawHull(t.getHull(), t.getMaxHull(), g2D, t.getPlayer());

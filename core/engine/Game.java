@@ -28,8 +28,8 @@ public class Game{
 		for (HumanTank tank : players){
 			map.gameEntities.add(tank);
 		}
-		props.add(new Prop(map, 200, 300, 1));
-		props.add(new Prop(map, 800, 500, 2));
+		props.add(new Prop(map, 460, 350, 0));
+		props.add(new Prop(map, 920, 130, 4));
 		for (Prop prop : props){
 			map.gameEntities.add(prop);
 		}

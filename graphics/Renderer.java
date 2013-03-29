@@ -109,9 +109,11 @@ public class Renderer extends Canvas{
 	//load resources here
     	ui.init(tanks);
     	humanTanks = tanks;
-    	props[1] = new Sprite("/resources/build1.png");
-    	props[2] = new Sprite("/resources/build2.png");
-    	props[3] = new Sprite("/resources/build3.png");
+    	props[0] = new Sprite("/resources/build2.png");
+    	props[1] = new Sprite("/resources/build1-1.png");
+    	props[2] = new Sprite("/resources/build1-2.png");
+    	props[3] = new Sprite("/resources/build1-3.png");
+    	props[4] = new Sprite("/resources/build3.png");
     	this.tanks.add(new Sprite("/resources/tank1.png"));
     	this.tanks.add(new Sprite("/resources/tank2.png"));
     	this.destTanks.add(new Sprite("/resources/ExplodedTank1.png"));
@@ -213,16 +215,12 @@ public class Renderer extends Canvas{
     }
     private void drawProp(int x, int y, double angle, int width, int height, int id) {
 		switch(id){
-		case 21:
-			props[1].draw(g2D, x, y - 15, width, height,angle);
+		case 20:
+			props[0].draw(g2D, x-18, y-49, width, height, angle);
 			break;
-		case 22:
-			props[2].draw(g2D, x-18, y - 49, width, height,angle);
+		case 24:
+			props[4].draw(g2D, x, y-30, width, height, angle);
 			break;
-		case 23:
-			props[3].draw(g2D, x-3, y - 40, width, height,angle);
-			break;
-			
 		}
 	}
 
@@ -249,6 +247,10 @@ public class Renderer extends Canvas{
 		//end of drawing
 		
 		ui.update(g2D);
+		
+
+		g2D.setColor(Color.BLUE);
+		g2D.drawRect(700, 500, 1, 1);
 		//syncs everything to smooth java frames
 		Toolkit.getDefaultToolkit().sync();
 		if(!buffer.contentsLost()){
