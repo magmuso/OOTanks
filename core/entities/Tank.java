@@ -1,10 +1,15 @@
 package core.entities;
 
 import core.engine.Land;
+import core.entities.top.LaserCannon;
+import core.entities.top.ShellCannon;
 
 public abstract class Tank extends GameEntity{
 	protected boolean destroyed = false;
+	protected ShellCannon shell = new ShellCannon();
+	protected LaserCannon laser = new LaserCannon();
 	protected Weapon wep;
+	protected int wepId;
 	protected int hull;
 	protected int maxHull;
 	public Tank(Land map, double x, double y, double angle, int hull, Weapon wep, int weight){
@@ -22,6 +27,16 @@ public abstract class Tank extends GameEntity{
 	//tank fire function
 	protected void fire() {
 		wep.fire(map, this);
+	}
+	
+	public void setWeapon(int id) {
+		wepId = id;
+		if (id == 0) {
+			wep = shell;
+		}
+		else if (id == 1) {
+			wep = laser;
+		}
 	}
 	@Override
 	public void onCollision(GameEntity ent){
@@ -59,5 +74,8 @@ public abstract class Tank extends GameEntity{
 	}
 	public int getMaxHull() {
 		return maxHull;
+	}
+	public int getWeapon() {
+		return wepId;
 	}
 };

@@ -10,17 +10,20 @@ import core.entities.top.HumanTank;
 public class GUI{
 
 	ArrayList<HumanTank> tanks = new ArrayList<HumanTank>();
+	private Sprite[] weps;
 	
 	public GUI(){ }
 	public void init(ArrayList<HumanTank> in_tanks) {
 		tanks = in_tanks;
+		weps = new Sprite[2];
+		weps[0] = new Sprite("/resources/ExplodedTank1.png");
+    	weps[1] = new Sprite("/resources/ExplodedTank2.png");
 	}
 	public void update(Graphics2D g2D) {
 		//hull from 0 to 100
-		int weapon = 0;
 		for (HumanTank t : tanks) {
 			drawHull(t.getHull(), t.getMaxHull(), g2D, t.getPlayer());
-			drawWeapon(weapon, g2D, t.getPlayer());
+			drawWeapon(t.getWeapon(), g2D, t.getPlayer());
 			if (t.getHull() <= 0) drawWinner(g2D, t.getPlayer());
 		}
 	}
@@ -62,5 +65,6 @@ public class GUI{
 		g2D.setColor(Color.BLACK);
 		g2D.drawString("WEAPON", c, 20);
 		g2D.drawRoundRect(c, 25, 50, 50, 10, 10);
+		weps[weapon].draw(g2D, c, 25, 0, 0, 0);
 	}
 };

@@ -22,8 +22,8 @@ public class Game{
 	 * Initialises the game logic
 	 */
 	public void init(){
-		players.add(new HumanTank(map, inp,100,100, Math.PI,100,new ShellCannon(), 10,(byte)1));
-		players.add(new HumanTank(map, inp,1100,650, 0, 100, new LaserCannon(), 10, (byte)2));
+		players.add(new HumanTank(map, inp,100,100, Math.PI,100, new ShellCannon(), 10,(byte)1));
+		players.add(new HumanTank(map, inp,1100,650, 0, 100, new ShellCannon(), 10, (byte)2));
 		map.gameEntities.add(new Prop(map, 500, 300, 0));
 		for (HumanTank tank : players){
 			map.gameEntities.add(tank);

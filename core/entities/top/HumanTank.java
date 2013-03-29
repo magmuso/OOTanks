@@ -31,6 +31,9 @@ public class HumanTank extends Tank{
 			else if (inpHandler.buttons[controller-1][3]) setTurn(1);
 			else setTurn(0);
 			if (inpHandler.buttons[controller-1][4]) fire();
+			if (inpHandler.buttons[controller-1][5]) setWeapon(0);
+			if (inpHandler.buttons[controller-1][6]) setWeapon(1);
+			
 		}
 	}
 	/**

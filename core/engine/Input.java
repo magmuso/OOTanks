@@ -7,13 +7,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 public class Input implements KeyListener{
-	public boolean[][] buttons = new boolean[2][5];
+	public boolean[][] buttons = new boolean[2][7];
 	/*
 	0 = up
 	1 = down
 	2 = left
 	3 = right
-	4 = space
+	4 = fire
+	5 = shell
+	6 = laser
 	*/
 
 	//constructor
@@ -29,6 +31,7 @@ public class Input implements KeyListener{
 	 * checks if a key is pressed
 	 */
 	public void keyPressed(KeyEvent e) {
+		//p1
 		if (e.getKeyCode() == KeyEvent.VK_W) {
 			buttons[0][0] = true;
 		}
@@ -44,6 +47,14 @@ public class Input implements KeyListener{
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
 			buttons[0][4] = true;
 		}
+		if (e.getKeyChar() == KeyEvent.VK_1) {
+			buttons[0][5] = true;
+		}
+		if (e.getKeyChar() == KeyEvent.VK_2) {
+			buttons[0][6] = true;
+		}
+		
+		//p2
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			buttons[1][0] = true;
 		}
@@ -59,6 +70,13 @@ public class Input implements KeyListener{
 		if (e.getKeyCode() == KeyEvent.VK_SLASH) {
 			buttons[1][4] = true;
 		}
+		if (e.getKeyChar() == KeyEvent.VK_3) {
+			buttons[1][5] = true;
+		}
+		if (e.getKeyChar() == KeyEvent.VK_4) {
+			buttons[1][6] = true;
+		}
+		
 	}
 
 	/**
@@ -66,6 +84,7 @@ public class Input implements KeyListener{
 	 * checks if a key is released
 	 */
 	public void keyReleased(KeyEvent e) {
+		//p1
 		if (e.getKeyCode() == KeyEvent.VK_W) {
 			buttons[0][0] = false;
 		}
@@ -81,6 +100,14 @@ public class Input implements KeyListener{
 		if (e.getKeyChar() == KeyEvent.VK_SPACE) {
 			buttons[0][4] = false;
 		}
+		if (e.getKeyChar() == KeyEvent.VK_1) {
+			buttons[0][5] = false;
+		}
+		if (e.getKeyChar() == KeyEvent.VK_2) {
+			buttons[0][6] = false;
+		}
+		
+		//p2
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			buttons[1][0] = false;
 		}
@@ -95,6 +122,12 @@ public class Input implements KeyListener{
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SLASH) {
 			buttons[1][4] = false;
+		}
+		if (e.getKeyChar() == KeyEvent.VK_3) {
+			buttons[1][5] = false;
+		}
+		if (e.getKeyChar() == KeyEvent.VK_4) {
+			buttons[1][6] = false;
 		}
 	}
 
