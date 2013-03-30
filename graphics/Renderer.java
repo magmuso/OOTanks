@@ -113,7 +113,7 @@ public class Renderer extends Canvas{
     	props[1] = new Sprite("/resources/build1-1.png");
     	props[2] = new Sprite("/resources/build1-2.png");
     	props[3] = new Sprite("/resources/build1-3.png");
-    	props[4] = new Sprite("/resources/build3old.png");
+    	props[4] = new Sprite("/resources/build3.png");
     	this.tanks.add(new Sprite("/resources/tank1.png"));
     	this.tanks.add(new Sprite("/resources/tank2.png"));
     	this.destTanks.add(new Sprite("/resources/ExplodedTank1.png"));
