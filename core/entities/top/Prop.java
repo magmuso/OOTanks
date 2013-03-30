@@ -13,6 +13,24 @@ public class Prop extends GameEntity{
 			width = 107;
 			height = 110;
 			break;
+		case 1:
+			this.x += 115;
+			this.y += 58;
+			width = 130;
+			height = 66;
+			break;
+		case 2:
+			this.x += 47;
+			this.y += 102;
+			width = 90;
+			height = 104;
+			break;
+		case 3:
+			this.x += 125;
+			this.y += 140;
+			width = 70;
+			height = 100;
+			break;
 		case 4:
 			width = 100;
 			height = 50;

@@ -29,6 +29,9 @@ public class Game{
 			map.gameEntities.add(tank);
 		}
 		props.add(new Prop(map, 460, 350, 0));
+		props.add(new Prop(map, 80, 500, 1));
+		props.add(new Prop(map, 80, 500, 2));
+		props.add(new Prop(map, 80, 500, 3));
 		props.add(new Prop(map, 920, 130, 4));
 		for (Prop prop : props){
 			map.gameEntities.add(prop);

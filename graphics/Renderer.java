@@ -218,8 +218,17 @@ public class Renderer extends Canvas{
 		case 20:
 			props[0].draw(g2D, x-18, y-49, width, height, angle);
 			break;
+		case 21:
+			props[1].draw(g2D, x-50, y-25, width, height, angle);
+			break;
+		case 22:
+			props[2].draw(g2D, x-2, y-50, width, height, angle);
+			break;
+		case 23:
+			props[3].draw(g2D, x-90, y-90, width, height, angle);
+			break;
 		case 24:
-			props[4].draw(g2D, x+2, y-30, width, height, 0);
+			props[4].draw(g2D, x-10, y-45, width, height, 0);
 			break;
 		}
 	}
@@ -248,9 +257,6 @@ public class Renderer extends Canvas{
 		
 		ui.update(g2D);
 		
-
-		g2D.setColor(Color.BLUE);
-		g2D.drawRect(700, 500, 1, 1);
 		//syncs everything to smooth java frames
 		Toolkit.getDefaultToolkit().sync();
 		if(!buffer.contentsLost()){
