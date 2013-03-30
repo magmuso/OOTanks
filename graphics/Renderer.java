@@ -113,7 +113,7 @@ public class Renderer extends Canvas{
     	props[1] = new Sprite("/resources/build1-1.png");
     	props[2] = new Sprite("/resources/build1-2.png");
     	props[3] = new Sprite("/resources/build1-3.png");
-    	props[4] = new Sprite("/resources/build3.png");
+    	props[4] = new Sprite("/resources/build3old.png");
     	this.tanks.add(new Sprite("/resources/tank1.png"));
     	this.tanks.add(new Sprite("/resources/tank2.png"));
     	this.destTanks.add(new Sprite("/resources/ExplodedTank1.png"));
@@ -219,7 +219,7 @@ public class Renderer extends Canvas{
 			props[0].draw(g2D, x-18, y-49, width, height, angle);
 			break;
 		case 24:
-			props[4].draw(g2D, x, y-30, width, height, angle);
+			props[4].draw(g2D, x+2, y-30, width, height, 0);
 			break;
 		}
 	}
