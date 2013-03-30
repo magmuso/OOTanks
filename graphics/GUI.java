@@ -11,6 +11,7 @@ public class GUI{
 
 	ArrayList<HumanTank> tanks = new ArrayList<HumanTank>();
 	private Sprite[] weps;
+	private Sprite[] text;
 	
 	public GUI(){ }
 	public void init(ArrayList<HumanTank> in_tanks) {
@@ -18,6 +19,9 @@ public class GUI{
 		weps = new Sprite[2];
 		weps[0] = new Sprite("/resources/iconShell.png");
     	weps[1] = new Sprite("/resources/iconLaser.png");
+    	text = new Sprite[2];
+    	text[0] = new Sprite("/resources/WIN1.png");
+    	text[1] = new Sprite("/resources/WIN2.png");
 	}
 	public void update(Graphics2D g2D) {
 
@@ -31,16 +35,11 @@ public class GUI{
 	
 	public void drawWinner(Graphics2D g2D, int id) {
 		if (id == 1) {
-			g2D.setColor(Color.RED);
-			g2D.scale(5.0,  5.0);
-			g2D.drawString("Player 2 Wins!", 90, 351/5);
-			g2D.scale(0.2,  0.2);
+			text[1].draw(g2D, 350, 300, 0, 0, 0);
 		}
 		else if (id == 2) {
-			g2D.setColor(Color.BLUE);
-			g2D.scale(5.0,  5.0);
-			g2D.drawString("Player 1 Wins!", 90, 351/5);
-			g2D.scale(0.2,  0.2);
+			text[0].draw(g2D, 350, 300, 0, 0, 0);
+
 		}
 	}
 	

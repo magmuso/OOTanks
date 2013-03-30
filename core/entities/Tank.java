@@ -9,6 +9,7 @@ public abstract class Tank extends GameEntity{
 	protected ShellCannon shell = new ShellCannon();
 	protected LaserCannon laser = new LaserCannon();
 	protected Weapon wep;
+	protected long lastChange = 0;
 	protected int wepId;
 	protected int hull;
 	protected int maxHull;
@@ -30,12 +31,17 @@ public abstract class Tank extends GameEntity{
 	}
 	
 	public void setWeapon(int id) {
-		wepId = id;
-		if (id == 0) {
-			wep = shell;
-		}
-		else if (id == 1) {
-			wep = laser;
+		if (lastChange < System.currentTimeMillis() - 100){
+			wepId = (id+2)%2;
+			System.out.println(lastChange);
+			lastChange = System.currentTimeMillis();
+			System.out.println(lastChange);
+			if (wepId == 0) {
+				wep = shell;
+			}
+			else if (wepId == 1) {
+				wep = laser;
+			}
 		}
 	}
 	@Override

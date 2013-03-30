@@ -12,7 +12,6 @@ public class Game{
 	public Collider coll;
 	
 	public ArrayList<HumanTank> players = new ArrayList<HumanTank>();
-	public ArrayList<Prop> props = new ArrayList<Prop>();
 			
 	public Game(){
 		map = new Land(1248,702);
@@ -28,6 +27,7 @@ public class Game{
 		for (HumanTank tank : players){
 			map.gameEntities.add(tank);
 		}
+		ArrayList<Prop> props = new ArrayList<Prop>();
 		props.add(new Prop(map, 460, 350, 0));
 		props.add(new Prop(map, 80, 500, 1));
 		props.add(new Prop(map, 80, 500, 2));
