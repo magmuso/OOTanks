@@ -31,11 +31,9 @@ public abstract class Tank extends GameEntity{
 	}
 	
 	public void setWeapon(int id) {
-		if (lastChange < System.currentTimeMillis() - 100){
+		if (lastChange < System.currentTimeMillis() - 500){
 			wepId = (id+2)%2;
-			System.out.println(lastChange);
 			lastChange = System.currentTimeMillis();
-			System.out.println(lastChange);
 			if (wepId == 0) {
 				wep = shell;
 			}
