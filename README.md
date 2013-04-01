@@ -3,32 +3,25 @@ OOTanks
 
 UoE group project OOTanks
 
-Links to tutorials: 
----------
+The team:
 
-The following tutorial is very useful, because we should plan on doing the game infrastructure similar (the good-way):
+Martynas Melninkas
+Lewis Barker
+Manas Bajaj
 
-- http://www.cokeandcode.com/info/tut2d.html
-
-Another awesome tutorial:
-
-- http://www.java2s.com/Tutorial/Java/CatalogJava.htm
-
-Good graphics tutorial:
-
-- http://docs.oracle.com/javase/tutorial/2d/basic2d/index.html
-
-Others:
-
-- http://beginwithjava.blogspot.co.uk/2008/07/very-basic-java-graphics-3-examples.html
-- http://zetcode.com/tutorials/javagamestutorial/
-- http://www.lwjgl.org/
-- http://code.google.com/p/j2dgf/
-- http://thenewboston.org/list.php?cat=30
+HAVE FUN PLAYING!
 
 How to run the project
 ---------
 
+Windows:
+- Open OOTanks.jar file in the binaries folder (bin)
+
+Linux:
+    $ java -jar bin/OOTanks.jar
+
+How to compile the project from the source:
+---------
 Windows:
 - Compile all .java files of the project:
 
