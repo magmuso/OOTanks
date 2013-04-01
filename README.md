@@ -5,9 +5,7 @@ UoE group project OOTanks
 
 The team:
 
-Martynas Melninkas
-Lewis Barker
-Manas Bajaj
+Martynas Melninkas, Lewis Barker and Manas Bajaj
 
 HAVE FUN PLAYING!
 
